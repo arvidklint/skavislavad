@@ -2,7 +2,7 @@
 //  skavislavadUITests.swift
 //  skavislavadUITests
 //
-//  Created by Arvid Sätterkvist on 18/03/16.
+//  Created by Arvid Sätterkvist on 20/03/16.
 //  Copyright © 2016 arvidsat. All rights reserved.
 //
 
