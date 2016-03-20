@@ -20,8 +20,12 @@ class BearTableViewController: UITableViewController {
         // Use the edit button item provided by the table view controller.
         navigationItem.leftBarButtonItem = editButtonItem()
         
-        // Load the sample data.
-        loadSampleBears()
+        if let savedBears = loadBears() {
+            bears += savedBears
+        } else {
+            // Load the sample data.
+            loadSampleBears()
+        }
     }
     
     func loadSampleBears() {
@@ -79,10 +83,11 @@ class BearTableViewController: UITableViewController {
         if editingStyle == .Delete {
             // Delete the row from the data source
             bears.removeAtIndex(indexPath.row)
+            saveBears()
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+        }
     }
     
 
@@ -107,12 +112,12 @@ class BearTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowBear" {
-            let BearDetailViewController = segue.destinationViewController as! BearViewController
+            let bearDetailViewController = segue.destinationViewController as! BearViewController
             // Get the cell that generated this segue.
             if let selectedMealCell = sender as? BearTableViewCell {
                 let indexPath = tableView.indexPathForCell(selectedMealCell)!
                 let selectedBear = bears[indexPath.row]
-                BearDetailViewController.bear = selectedBear
+                bearDetailViewController.bear = selectedBear
             }
         }
         else if segue.identifier == "AddBear" {
@@ -135,7 +140,21 @@ class BearTableViewController: UITableViewController {
                 bears.append(bear)
                 tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
             }
+            saveBears()
         }
+    }
+    
+    // MARK: NSCoding
+    func saveBears() {
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(bears, toFile: Bear.ArchiveURL.path!)
+        
+        if !isSuccessfulSave {
+            print("Failed to save meals...")
+        }
+    }
+    
+    func loadBears() -> [Bear]? {
+        return NSKeyedUnarchiver.unarchiveObjectWithFile(Bear.ArchiveURL.path!) as? [Bear]
     }
 
 }
