@@ -29,6 +29,15 @@ class BearViewController:
         // Handle the text field’s user input through delegate callbacks.
         nameTextField.delegate = self
         
+        // Set up views if editing an existing Meal.
+        if let bear = bear {
+            navigationItem.title = bear.name
+            nameTextField.text   = bear.name
+            photoImageView.image = bear.photo
+            ratingControl.rating = bear.rating
+        }
+        
+        // Enable the Save button only if the text field has a valid Meal name.
         checkValidBearName()
     }
 
@@ -79,7 +88,15 @@ class BearViewController:
     
     // MARK: Navigation
     @IBAction func cancelNewBear(sender: UIBarButtonItem) {
-        dismissViewControllerAnimated(true, completion: nil)
+        // Depending on style of presentation (modal or push presentation), this view controller needs to be dismissed in two different ways.
+        let isPresentingInAddBearMode = presentingViewController is UINavigationController
+        
+        if isPresentingInAddBearMode {
+            dismissViewControllerAnimated(true, completion: nil)
+        }
+        else {
+            navigationController!.popViewControllerAnimated(true)
+        }
     }
     
     // This method lets you configure a view controller before it's presented.
