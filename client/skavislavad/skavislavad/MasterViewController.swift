@@ -18,7 +18,7 @@ class MasterViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Alamofire.request(.GET, "localhost:3000/api").responseJSON { response in // 1
+        Alamofire.request(.GET, "http://localhost:3000/api/bears").responseJSON { response in // 1
             print(response.request)  // original URL request
             print(response.response) // URL response
             print(response.data)     // server data
