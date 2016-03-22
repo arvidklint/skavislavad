@@ -48,6 +48,31 @@ function loopThrough(req, schema){
 //----------------------------------\\
 
 //Route for Users
+router.route('/bears')
+  .post(function(req, res) {
+
+    var bear = new Bear();   // create a new instance of the User model
+
+    loopThrough(req, bear);
+
+    // save the user and check for errors
+    bear.save(function(err) {
+      if (err)
+        res.send(err);
+      res.json({ message: 'Bear created!' });
+    });
+  })
+
+  .get(function(req, res) {
+    Bear.find(function(err, bears) {
+      if (err)
+        res.send(err);
+      res.json(bears);
+    });
+  });
+
+
+//Route for Users
 router.route('/user')
   .post(function(req, res) {
 
