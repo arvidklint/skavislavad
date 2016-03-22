@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import Alamofire
 
 class BearTableViewController: UITableViewController {
     
     // MARK: Properties
     
-    var bears = [Bear]()
+    var bears = [String]()
+    @IBOutlet weak var tableview: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,26 +22,43 @@ class BearTableViewController: UITableViewController {
         // Use the edit button item provided by the table view controller.
         navigationItem.leftBarButtonItem = editButtonItem()
         
-        if let savedBears = loadBears() {
-            bears += savedBears
-        } else {
-            // Load the sample data.
-            loadSampleBears()
+//        if let savedBears = loadBears() {
+//            bears += savedBears
+//        } else {
+//            // Load the sample data.
+//            loadSampleBears()
+//        }
+        
+        Alamofire.request(.GET, "http://localhost:3000/api/bears") .responseJSON { response in // 1
+            print(response.request)  // original URL request
+            print(response.response) // URL response
+            print(response.data)     // server data
+            print(response.result)   // result of response serialization
+            
+            if let JSON = response.result.value {
+                print("JSON: \(JSON)")
+                for index in 0..<JSON.count {
+                    print(JSON[index]["name"]!)
+                    self.bears.append(JSON[index]["name"]! as! String)
+                }
+            }
+            
+            self.tableview.reloadData()
         }
     }
     
-    func loadSampleBears() {
-        let photo1 = UIImage(named: "sample1")!
-        let bear1 = Bear(name: "Arvid", photo: photo1, rating: 4)!
-        
-        let photo2 = UIImage(named: "sample1")!
-        let bear2 = Bear(name: "Emil Westin", photo: photo2, rating: 5)!
-        
-        let photo3 = UIImage(named: "sample1")!
-        let bear3 = Bear(name: "Mikael 2", photo: photo3, rating: 3)!
-        
-        bears += [bear1, bear2, bear3]
-    }
+//    func loadSampleBears() {
+//        let photo1 = UIImage(named: "sample1")!
+//        let bear1 = Bear(name: "Arvid", photo: photo1, rating: 4)!
+//        
+//        let photo2 = UIImage(named: "sample1")!
+//        let bear2 = Bear(name: "Emil Westin", photo: photo2, rating: 5)!
+//        
+//        let photo3 = UIImage(named: "sample1")!
+//        let bear3 = Bear(name: "Mikael 2", photo: photo3, rating: 3)!
+//        
+//        bears += [bear1, bear2, bear3]
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -64,9 +83,9 @@ class BearTableViewController: UITableViewController {
         
         let bear = bears[indexPath.row]
         
-        cell.nameLabel.text = bear.name
-        cell.photoImageView.image = bear.photo
-        cell.ratingControl.rating = bear.rating
+        cell.nameLabel.text = bear
+//        cell.photoImageView.image = bear.photo
+//        cell.ratingControl.rating = bear.rating
 
         return cell
     }
@@ -111,37 +130,37 @@ class BearTableViewController: UITableViewController {
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "ShowBear" {
-            let bearDetailViewController = segue.destinationViewController as! BearViewController
-            // Get the cell that generated this segue.
-            if let selectedMealCell = sender as? BearTableViewCell {
-                let indexPath = tableView.indexPathForCell(selectedMealCell)!
-                let selectedBear = bears[indexPath.row]
-                bearDetailViewController.bear = selectedBear
-            }
-        }
-        else if segue.identifier == "AddBear" {
-            print("Adding new bear!")
-        }
+//        if segue.identifier == "ShowBear" {
+//            let bearDetailViewController = segue.destinationViewController as! BearViewController
+//            // Get the cell that generated this segue.
+//            if let selectedMealCell = sender as? BearTableViewCell {
+//                let indexPath = tableView.indexPathForCell(selectedMealCell)!
+//                let selectedBear = bears[indexPath.row]
+//                bearDetailViewController.bear = selectedBear
+//            }
+//        }
+//        else if segue.identifier == "AddBear" {
+//            print("Adding new bear!")
+//        }
     }
 
     
     @IBAction func unwindToBearList(sender: UIStoryboardSegue) {
-        if let sourceViewController = sender.sourceViewController as? BearViewController, bear = sourceViewController.bear {
-            
-            if let selectedIndexPath = tableView.indexPathForSelectedRow {
-                // Update an existing meal.
-                bears[selectedIndexPath.row] = bear
-                tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .None)
-            }
-            else {
-                // Add a new meal.
-                let newIndexPath = NSIndexPath(forRow: bears.count, inSection: 0)
-                bears.append(bear)
-                tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
-            }
-            saveBears()
-        }
+//        if let sourceViewController = sender.sourceViewController as? BearViewController, bear = sourceViewController.bear {
+//            
+//            if let selectedIndexPath = tableView.indexPathForSelectedRow {
+//                // Update an existing meal.
+//                bears[selectedIndexPath.row] = bear
+//                tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .None)
+//            }
+//            else {
+//                // Add a new meal.
+//                let newIndexPath = NSIndexPath(forRow: bears.count, inSection: 0)
+//                bears.append(bear)
+//                tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+//            }
+//            saveBears()
+//        }
     }
     
     // MARK: NSCoding

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class Bear: NSObject, NSCoding {
     // MARK: Properties
@@ -56,5 +57,10 @@ class Bear: NSObject, NSCoding {
         let rating = aDecoder.decodeIntegerForKey(PropertyKey.ratingKey)
         // Must call designated initilizer.
         self.init(name: name, photo: photo, rating: rating)
+    }
+    
+    // MARK: HTTP requests 
+    static func getBears() {
+        
     }
 }
