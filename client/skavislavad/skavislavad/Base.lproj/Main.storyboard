@@ -179,24 +179,179 @@
             </objects>
             <point key="canvasLocation" x="1057" y="812"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="0eF-Ac-k3m">
+        <!--Profile View Controller-->
+        <scene sceneID="tc8-Gu-v35">
             <objects>
-                <viewController id="WEV-hp-ICm" sceneMemberID="viewController">
+                <viewController id="VqI-jM-GQr" customClass="ProfileViewController" customModule="skavislavad" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Doa-BV-fKE"/>
-                        <viewControllerLayoutGuide type="bottom" id="yMj-kU-9SM"/>
+                        <viewControllerLayoutGuide type="top" id="Ygh-T2-Jdi"/>
+                        <viewControllerLayoutGuide type="bottom" id="RuY-P9-6wM"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="39a-vE-lSa">
+                    <view key="view" contentMode="scaleToFill" id="27j-gc-bzV">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="8oV-2t-74z">
+                                <rect key="frame" x="30" y="60" width="540" height="255"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="L8p-Ws-7ac">
+                                        <rect key="frame" x="114" y="0.0" width="312" height="234"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Användarnamn" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d5z-Lf-cLl">
+                                        <rect key="frame" x="213" y="234" width="116" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xKg-Or-Wp0">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Skapade vad">
+                                    <color key="titleColor" red="1" green="0.98988441319999998" blue="0.99964489970000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="39" y="530" width="322" height="30"/>
+                                </variation>
+                                <connections>
+                                    <segue destination="egG-jG-Jd2" kind="show" id="Mk8-CR-1wf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c7D-c7-shg">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Saldo">
+                                    <color key="titleColor" red="1" green="0.98988441319999998" blue="0.99964489970000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="39" y="385" width="322" height="30"/>
+                                </variation>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tsV-Oe-Z5j">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Spelade vad">
+                                    <color key="titleColor" red="1" green="0.98988441319999998" blue="0.99964489970000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="39" y="568" width="322" height="30"/>
+                                </variation>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fnJ-qJ-Eok">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Polare">
+                                    <color key="titleColor" red="1" green="0.98988441319999998" blue="0.99964489970000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="39" y="606" width="322" height="30"/>
+                                </variation>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vNE-Pq-buB">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Meddelanden">
+                                    <color key="titleColor" red="1" green="0.98988441319999998" blue="0.99964489970000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="39" y="644" width="322" height="30"/>
+                                </variation>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ditt saldo (SEK):" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="og9-Ul-OuO">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="36" y="423" width="135" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJj-Xh-UN8">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.41335503276427676" green="0.7612004521928798" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="179" y="423" width="182" height="21"/>
+                                </variation>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HtF-iP-ZtU">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                <state key="normal" title="+">
+                                    <color key="titleColor" red="0.41335503280000002" green="0.76120045219999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="315" y="440" width="46" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="addToBalance:" destination="VqI-jM-GQr" eventType="touchUpInside" id="eNG-CK-Jxb"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sätt in cashen!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yu6-dl-KwO">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="39" y="449" width="132" height="21"/>
+                                </variation>
+                            </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P3h-lt-iQe">
+                                <rect key="frame" x="0.0" y="-216" width="320" height="216"/>
+                                <color key="backgroundColor" red="0.41335503280000002" green="0.76120045219999999" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="475" width="400" height="216"/>
+                                </variation>
+                            </pickerView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="8oV-2t-74z" secondAttribute="trailing" constant="10" id="P8I-uB-bhH"/>
+                            <constraint firstItem="8oV-2t-74z" firstAttribute="top" secondItem="Ygh-T2-Jdi" secondAttribute="bottom" constant="40" id="hG8-VL-G8x"/>
+                            <constraint firstItem="8oV-2t-74z" firstAttribute="leading" secondItem="27j-gc-bzV" secondAttribute="leadingMargin" constant="10" id="zSc-0y-hkE"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="xKg-Or-Wp0"/>
+                                <exclude reference="c7D-c7-shg"/>
+                                <exclude reference="tsV-Oe-Z5j"/>
+                                <exclude reference="fnJ-qJ-Eok"/>
+                                <exclude reference="vNE-Pq-buB"/>
+                                <exclude reference="og9-Ul-OuO"/>
+                                <exclude reference="wJj-Xh-UN8"/>
+                                <exclude reference="HtF-iP-ZtU"/>
+                                <exclude reference="Yu6-dl-KwO"/>
+                                <exclude reference="P3h-lt-iQe"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="xKg-Or-Wp0"/>
+                                <include reference="c7D-c7-shg"/>
+                                <include reference="tsV-Oe-Z5j"/>
+                                <include reference="fnJ-qJ-Eok"/>
+                                <include reference="vNE-Pq-buB"/>
+                                <include reference="og9-Ul-OuO"/>
+                                <include reference="wJj-Xh-UN8"/>
+                                <include reference="HtF-iP-ZtU"/>
+                                <include reference="Yu6-dl-KwO"/>
+                                <include reference="P3h-lt-iQe"/>
+                            </mask>
+                        </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" systemItem="contacts" id="KVU-8C-0iR"/>
+                    <navigationItem key="navigationItem" id="U9x-gW-DYz"/>
+                    <connections>
+                        <outlet property="balancePicker" destination="P3h-lt-iQe" id="sop-mf-hSu"/>
+                        <outlet property="currentBalanceLabel" destination="wJj-Xh-UN8" id="NeJ-Rf-Uwt"/>
+                        <outlet property="profileImage" destination="L8p-Ws-7ac" id="gpv-gg-1nd"/>
+                        <outlet property="profileName" destination="d5z-Lf-cLl" id="gmq-nl-L3B"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="h7Z-rz-kOr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tBK-Gr-PcG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1840" y="2107"/>
+            <point key="canvasLocation" x="2622" y="2137.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="4fv-4B-LcQ">
@@ -253,7 +408,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="si6-86-Wlz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1848" y="1415"/>
+            <point key="canvasLocation" x="1904" y="1383"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="JBe-aK-Ppf">
@@ -266,9 +421,9 @@
                     </tabBar>
                     <connections>
                         <segue destination="JmS-ug-egL" kind="relationship" relationship="viewControllers" id="twH-05-s3B"/>
-                        <segue destination="WEV-hp-ICm" kind="relationship" relationship="viewControllers" id="wz9-Uf-5gq"/>
                         <segue destination="1ZF-UK-H4N" kind="relationship" relationship="viewControllers" id="zsU-ge-Kzl"/>
                         <segue destination="yXz-Hx-BMC" kind="relationship" relationship="viewControllers" id="gDB-AG-6Rc"/>
+                        <segue destination="eMS-vg-XMl" kind="relationship" relationship="viewControllers" id="Vo7-88-bsk"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dZr-Tg-UIj" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -290,10 +445,10 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="5Pg-8Y-B5M">
                                 <rect key="frame" x="30" y="150" width="540" height="109"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Användarnamn" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sUH-oI-fvP">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Användarnamn" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sUH-oI-fvP">
                                         <rect key="frame" x="213" y="0.0" width="116" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Xw-GJ-k14">
@@ -323,6 +478,53 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JQa-NQ-4Lu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="120" y="3291"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="HbE-hm-JgW">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="eMS-vg-XMl" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="contacts" id="x5G-wF-eq1"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LDE-MR-rcd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="VqI-jM-GQr" kind="relationship" relationship="rootViewController" id="pbJ-qg-Nl4"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RXM-9r-EAk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1810" y="2138"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="87q-nx-Y6p">
+            <objects>
+                <tableViewController id="egG-jG-Jd2" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="fV3-35-9si">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="NU5-cO-teF">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NU5-cO-teF" id="q6u-E5-sTv">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="egG-jG-Jd2" id="vuM-FS-btP"/>
+                            <outlet property="delegate" destination="egG-jG-Jd2" id="YUf-pq-9Cf"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="a2W-Ii-c1f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3414" y="2137.5"/>
         </scene>
     </scenes>
     <resources>
