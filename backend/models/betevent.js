@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var betEventSchema = new Schema({ 
+var BetEventSchema = new Schema({
 	betName: { type: String, required: true},
     userName: { type: String, required: true, unique: true },
     betAmount: Number,
@@ -10,4 +10,4 @@ var betEventSchema = new Schema({
 
 });
 
-module.exports = mongoose.model('betEvent', betEventSchema);
+module.exports = mongoose.model('BetEvent', BetEventSchema);

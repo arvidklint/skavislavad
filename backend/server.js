@@ -151,8 +151,8 @@ router.route('/user/:userName')
 router.route('/betevent')
   .post(function(req, res) {
 
-     var betevent = new betEvent();      // create a new instance of the betevent model
-     
+     var betevent = new BetEvent();      // create a new instance of the betevent model
+
      loopThrough(req, betevent);
 
     // save the betevent and check for errors
@@ -213,7 +213,7 @@ router.route('/placedbets')
   .post(function(req, res) {
 
     var placedbets = new placedBets();      // create a new instance of the placebets
-    
+
     loopThrough(req, placebets);
 
     // save the bear and check for errors
@@ -238,7 +238,7 @@ router.route('/balancehistory')
   .post(function(req, res) {
 
     var balancehistory = new balancehistory();      // create a new instance of the Balancehistory
-    
+
     loopThrough(req, Balancehistory);
 
     // save the bear and check for errors
