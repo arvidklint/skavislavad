@@ -16,6 +16,9 @@
 		FE3310131C9EB5F800F8188A /* skavislavadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3310121C9EB5F800F8188A /* skavislavadTests.swift */; };
 		FE33101E1C9EB5F800F8188A /* skavislavadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE33101D1C9EB5F800F8188A /* skavislavadUITests.swift */; };
 		FE33102C1C9EDC2500F8188A /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE33102B1C9EDC2500F8188A /* RatingControl.swift */; };
+		FE430ED41CA177D0009282AC /* BetFeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE430ED31CA177D0009282AC /* BetFeedTableViewController.swift */; };
+		FE430ED61CA1788C009282AC /* BetFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE430ED51CA1788C009282AC /* BetFeedTableViewCell.swift */; };
+		FE430ED81CA18857009282AC /* BetEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE430ED71CA18857009282AC /* BetEvent.swift */; };
 		FE8EAA501C9EE7E000C1800C /* Bear.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8EAA4F1C9EE7E000C1800C /* Bear.swift */; };
 		FE8EAA511C9EE7E000C1800C /* Bear.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8EAA4F1C9EE7E000C1800C /* Bear.swift */; };
 		FE8EAA521C9EE7E000C1800C /* Bear.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8EAA4F1C9EE7E000C1800C /* Bear.swift */; };
@@ -62,6 +65,9 @@
 		FE33101D1C9EB5F800F8188A /* skavislavadUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skavislavadUITests.swift; sourceTree = "<group>"; };
 		FE33101F1C9EB5F900F8188A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE33102B1C9EDC2500F8188A /* RatingControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
+		FE430ED31CA177D0009282AC /* BetFeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BetFeedTableViewController.swift; path = Controllers/BetFeedTableViewController.swift; sourceTree = "<group>"; };
+		FE430ED51CA1788C009282AC /* BetFeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetFeedTableViewCell.swift; sourceTree = "<group>"; };
+		FE430ED71CA18857009282AC /* BetEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BetEvent.swift; path = Models/BetEvent.swift; sourceTree = "<group>"; };
 		FE8EAA4F1C9EE7E000C1800C /* Bear.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bear.swift; sourceTree = "<group>"; };
 		FE8EAA531C9EEDBE00C1800C /* BearTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BearTableViewCell.swift; sourceTree = "<group>"; };
 		FE8EAA571C9EF63B00C1800C /* BearTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BearTableViewController.swift; sourceTree = "<group>"; };
@@ -139,6 +145,9 @@
 				FE330FFF1C9EB5F800F8188A /* BearViewController.swift */,
 				FE8EAA4F1C9EE7E000C1800C /* Bear.swift */,
 				FE3310011C9EB5F800F8188A /* Main.storyboard */,
+				FE430ED51CA1788C009282AC /* BetFeedTableViewCell.swift */,
+				FE430ED31CA177D0009282AC /* BetFeedTableViewController.swift */,
+				FE430ED71CA18857009282AC /* BetEvent.swift */,
 				FE8EAA571C9EF63B00C1800C /* BearTableViewController.swift */,
 				FE8EAA531C9EEDBE00C1800C /* BearTableViewCell.swift */,
 				FE33102B1C9EDC2500F8188A /* RatingControl.swift */,
@@ -238,6 +247,7 @@
 				TargetAttributes = {
 					FE330FF91C9EB5F800F8188A = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = TAX4T9RXMQ;
 					};
 					FE33100D1C9EB5F800F8188A = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -352,9 +362,12 @@
 				FE3310001C9EB5F800F8188A /* BearViewController.swift in Sources */,
 				FE33102C1C9EDC2500F8188A /* RatingControl.swift in Sources */,
 				FE330FFE1C9EB5F800F8188A /* AppDelegate.swift in Sources */,
+				FE430ED81CA18857009282AC /* BetEvent.swift in Sources */,
 				FE8EAA581C9EF63B00C1800C /* BearTableViewController.swift in Sources */,
 				FE8EAA541C9EEDBE00C1800C /* BearTableViewCell.swift in Sources */,
 				FE8EAA501C9EE7E000C1800C /* Bear.swift in Sources */,
+				FE430ED41CA177D0009282AC /* BetFeedTableViewController.swift in Sources */,
+				FE430ED61CA1788C009282AC /* BetFeedTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -501,10 +514,13 @@
 			baseConfigurationReference = 1D6AC319431D072A6AB5AC32 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = skavislavad/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = arvidsat.skavislavad;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -513,10 +529,13 @@
 			baseConfigurationReference = 503F78ECF298F247A0972E9B /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = skavislavad/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = arvidsat.skavislavad;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
