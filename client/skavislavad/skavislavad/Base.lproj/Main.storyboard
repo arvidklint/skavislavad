@@ -203,9 +203,6 @@
                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
-                                                    <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                                        <rect key="frame" x="161" y="0.0" width="42" height="20"/>
-                                                    </variation>
                                                 </label>
                                                 <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="12g-OV-S7E">
                                                     <rect key="frame" x="0.0" y="32" width="564" height="70"/>
@@ -255,10 +252,10 @@
             </objects>
             <point key="canvasLocation" x="1841" y="1387"/>
         </scene>
-        <!--View Controller-->
+        <!--Profile View Controller-->
         <scene sceneID="0eF-Ac-k3m">
             <objects>
-                <viewController id="WEV-hp-ICm" sceneMemberID="viewController">
+                <viewController id="WEV-hp-ICm" customClass="ProfileViewController" customModule="skavislavad" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Doa-BV-fKE"/>
                         <viewControllerLayoutGuide type="bottom" id="yMj-kU-9SM"/>
@@ -278,19 +275,25 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jf8-QU-TrC">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Saldo"/>
+                                <color key="backgroundColor" red="0.58885056182818496" green="0.57179437459679572" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Visa saldohistorik">
+                                    <color key="titleColor" red="1" green="0.98988441319999998" blue="0.99964489970000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="297" width="360" height="30"/>
+                                    <rect key="frame" x="20" y="376" width="360" height="30"/>
                                 </variation>
                                 <connections>
-                                    <segue destination="qDX-Vm-nSX" kind="show" id="eva-Lc-0Pk"/>
+                                    <segue destination="qDX-Vm-nSX" kind="show" id="M0Y-tJ-BOh"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TYa-hl-xnP">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Dina vadslagningar"/>
+                                <color key="backgroundColor" red="0.51298303666512757" green="0.51533039699104344" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Dina vadslagningar">
+                                    <color key="titleColor" red="1" green="0.98988441319999998" blue="0.99964489970000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="335" width="360" height="30"/>
+                                    <rect key="frame" x="20" y="414" width="360" height="30"/>
                                 </variation>
                                 <connections>
                                     <segue destination="2bX-tO-Djm" kind="show" id="fUF-Ja-OaD"/>
@@ -298,9 +301,12 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wSw-p1-Zpc">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Spel"/>
+                                <color key="backgroundColor" red="0.51298303666512757" green="0.51533039699104344" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Spel">
+                                    <color key="titleColor" red="1" green="0.98988441319999998" blue="0.99964489970000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="373" width="360" height="30"/>
+                                    <rect key="frame" x="20" y="452" width="360" height="30"/>
                                 </variation>
                                 <connections>
                                     <segue destination="4ok-Sp-4Kj" kind="show" id="4WI-uj-zeC"/>
@@ -308,9 +314,12 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0g9-Rv-hGf">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Kompisar"/>
+                                <color key="backgroundColor" red="0.51298303666512757" green="0.51533039699104344" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Kompisar">
+                                    <color key="titleColor" red="1" green="0.98988441319999998" blue="0.99964489970000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="411" width="360" height="30"/>
+                                    <rect key="frame" x="20" y="490" width="360" height="30"/>
                                 </variation>
                                 <connections>
                                     <segue destination="MJK-rE-Z1e" kind="show" id="BSu-TX-DY6"/>
@@ -318,9 +327,12 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vi9-qP-5AZ">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Meddelanden"/>
+                                <color key="backgroundColor" red="0.51298303666512757" green="0.51533039699104344" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Meddelanden">
+                                    <color key="titleColor" red="1" green="0.98988441319999998" blue="0.99964489970000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="449" width="360" height="30"/>
+                                    <rect key="frame" x="20" y="528" width="360" height="30"/>
                                 </variation>
                                 <connections>
                                     <segue destination="ffv-t3-3bB" kind="show" id="hSI-GR-btf"/>
@@ -335,8 +347,44 @@
                                     <rect key="frame" x="80" y="20" width="240" height="163"/>
                                 </variation>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saldo:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bAt-5e-YAG">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="20" y="299" width="60" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="500" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fhL-Rz-aLT">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="80" y="299" width="75" height="21"/>
+                                </variation>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fU4-KC-NkN">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Sätt in cashen!"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="12" y="320" width="117" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="addBalanceButton:" destination="WEV-hp-ICm" eventType="touchUpInside" id="oN3-we-hJu"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Belopp (SEK)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="b62-qY-ORA">
+                                <rect key="frame" x="-25" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="145" y="320" width="114" height="30"/>
+                                </variation>
+                            </textField>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.79312082414807927" green="0.89254236221313477" blue="0.56755753938139719" alpha="1" colorSpace="calibratedRGB"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="3s1-t6-94L"/>
@@ -346,6 +394,10 @@
                                 <exclude reference="0g9-Rv-hGf"/>
                                 <exclude reference="Vi9-qP-5AZ"/>
                                 <exclude reference="qyC-2G-Pq0"/>
+                                <exclude reference="bAt-5e-YAG"/>
+                                <exclude reference="fhL-Rz-aLT"/>
+                                <exclude reference="fU4-KC-NkN"/>
+                                <exclude reference="b62-qY-ORA"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -361,20 +413,30 @@
                                 <include reference="wSw-p1-Zpc"/>
                                 <include reference="0g9-Rv-hGf"/>
                                 <include reference="Vi9-qP-5AZ"/>
+                                <include reference="bAt-5e-YAG"/>
+                                <include reference="fhL-Rz-aLT"/>
+                                <include reference="fU4-KC-NkN"/>
+                                <include reference="b62-qY-ORA"/>
                             </mask>
                         </variation>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="contacts" id="mYk-D6-8q4"/>
                     <navigationItem key="navigationItem" id="OD9-fJ-jIa"/>
+                    <connections>
+                        <outlet property="addBalanceField" destination="b62-qY-ORA" id="9ZD-dx-Dx4"/>
+                        <outlet property="currentBalance" destination="fhL-Rz-aLT" id="DwC-cf-KOs"/>
+                        <outlet property="profileImage" destination="qyC-2G-Pq0" id="0te-ft-7us"/>
+                        <outlet property="profileName" destination="3s1-t6-94L" id="UB0-Aq-q8J"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h7Z-rz-kOr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2758.5" y="2127"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Saldo-->
         <scene sceneID="uPA-IR-PGr">
             <objects>
-                <tableViewController id="OeX-09-fI9" sceneMemberID="viewController">
+                <tableViewController id="OeX-09-fI9" customClass="BalanceViewController" customModule="skavislavad" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="8cQ-3V-A4v">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -394,13 +456,17 @@
                             <outlet property="delegate" destination="OeX-09-fI9" id="nZa-hD-wJ9"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="4iK-aw-Hi1">
-                        <barButtonItem key="leftBarButtonItem" title="Back" id="pSv-me-CaN"/>
+                    <navigationItem key="navigationItem" title="Saldo" id="4iK-aw-Hi1">
+                        <barButtonItem key="leftBarButtonItem" title="Tillbaka" id="pSv-me-CaN">
+                            <connections>
+                                <action selector="cancelButton:" destination="OeX-09-fI9" id="ofW-KM-SLp"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gsB-7X-CzG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4620" y="819.75"/>
+            <point key="canvasLocation" x="5538" y="819.75"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="FGs-qS-bI9">
@@ -429,7 +495,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2CT-Br-KQP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6564" y="1097.25"/>
+            <point key="canvasLocation" x="7482" y="1097.25"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="duH-aq-xyt">
@@ -653,7 +719,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CqI-fV-qVf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3588" y="825.75"/>
+            <point key="canvasLocation" x="3552" y="1485.75"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ljr-0C-yh1">
@@ -671,7 +737,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="icy-qf-DiD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5568" y="1109.25"/>
+            <point key="canvasLocation" x="6486" y="1109.25"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="B58-j7-F0K">

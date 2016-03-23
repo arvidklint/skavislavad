@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		20D6F3F71CA2BE6E0081D247 /* BalanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D6F3F61CA2BE6E0081D247 /* BalanceViewController.swift */; };
+		20D6F3FB1CA2CD040081D247 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D6F3FA1CA2CD040081D247 /* ProfileViewController.swift */; };
+		20D6F3FD1CA2D5210081D247 /* ProfileUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D6F3FC1CA2D5210081D247 /* ProfileUser.swift */; };
 		AEF566B56A2329E2AEA60F93 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E44011B2B5E556132B42ED /* Pods.framework */; };
 		FE330FFE1C9EB5F800F8188A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE330FFD1C9EB5F800F8188A /* AppDelegate.swift */; };
 		FE3310001C9EB5F800F8188A /* BearViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE330FFF1C9EB5F800F8188A /* BearViewController.swift */; };
@@ -49,6 +52,9 @@
 
 /* Begin PBXFileReference section */
 		1D6AC319431D072A6AB5AC32 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		20D6F3F61CA2BE6E0081D247 /* BalanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceViewController.swift; sourceTree = "<group>"; };
+		20D6F3FA1CA2CD040081D247 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		20D6F3FC1CA2D5210081D247 /* ProfileUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileUser.swift; sourceTree = "<group>"; };
 		503F78ECF298F247A0972E9B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		88E44011B2B5E556132B42ED /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE330FFA1C9EB5F800F8188A /* skavislavad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = skavislavad.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -145,6 +151,9 @@
 				FE330FFF1C9EB5F800F8188A /* BearViewController.swift */,
 				FE8EAA4F1C9EE7E000C1800C /* Bear.swift */,
 				FE3310011C9EB5F800F8188A /* Main.storyboard */,
+				20D6F3FA1CA2CD040081D247 /* ProfileViewController.swift */,
+				20D6F3FC1CA2D5210081D247 /* ProfileUser.swift */,
+				20D6F3F61CA2BE6E0081D247 /* BalanceViewController.swift */,
 				FE430ED51CA1788C009282AC /* BetFeedTableViewCell.swift */,
 				FE430ED31CA177D0009282AC /* BetFeedTableViewController.swift */,
 				FE430ED71CA18857009282AC /* BetEvent.swift */,
@@ -363,9 +372,12 @@
 				FE33102C1C9EDC2500F8188A /* RatingControl.swift in Sources */,
 				FE330FFE1C9EB5F800F8188A /* AppDelegate.swift in Sources */,
 				FE430ED81CA18857009282AC /* BetEvent.swift in Sources */,
+				20D6F3FD1CA2D5210081D247 /* ProfileUser.swift in Sources */,
 				FE8EAA581C9EF63B00C1800C /* BearTableViewController.swift in Sources */,
 				FE8EAA541C9EEDBE00C1800C /* BearTableViewCell.swift in Sources */,
+				20D6F3FB1CA2CD040081D247 /* ProfileViewController.swift in Sources */,
 				FE8EAA501C9EE7E000C1800C /* Bear.swift in Sources */,
+				20D6F3F71CA2BE6E0081D247 /* BalanceViewController.swift in Sources */,
 				FE430ED41CA177D0009282AC /* BetFeedTableViewController.swift in Sources */,
 				FE430ED61CA1788C009282AC /* BetFeedTableViewCell.swift in Sources */,
 			);
