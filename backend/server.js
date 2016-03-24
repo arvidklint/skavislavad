@@ -248,6 +248,16 @@ router.route('/betevent/:betevent_id')
         });
     });
 
+router.route('/betevent/:userName')
+    .get(function(req, res){
+        BetEvent.find({ userName: req.params.userName }, function(err, betevents) {
+            if (err){
+                res.send(err);
+            }
+            res.json(betevents);
+        });
+    });
+
 
 //Route for placedbets
 router.route('/placedbets')
