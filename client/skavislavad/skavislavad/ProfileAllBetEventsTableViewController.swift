@@ -1,24 +1,18 @@
 //
-//  BalanceViewController.swift
+//  ProfileBetEventsTableViewController.swift
 //  skavislavad
 //
-//  Created by Emil Westin on 2016-03-23.
+//  Created by Emil Westin on 2016-03-24.
 //  Copyright © 2016 arvidsat. All rights reserved.
 //
 
 import UIKit
-import Alamofire
-import SwiftyJSON
 
-class BalanceViewController: UITableViewController {
-    let loggedInUser = "Emil"
-    var balanceHistories = [Balance]()
+class ProfileAllBetEventsTableViewController: UITableViewController {
+    
     @IBAction func cancelButton(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
-
     }
-    
-    @IBOutlet var tableview: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,17 +22,6 @@ class BalanceViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
-        Alamofire.request(.GET, "http://localhost:3000/api/balancehistory/\(loggedInUser)").responseJSON { response in
-            
-            let json = JSON(response.result.value!)
-            for index in 0..<json.count {
-                self.balanceHistories.append(Balance(json: json[index]))
-            }
-            
-            self.tableview.reloadData()
-        }
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,34 +33,14 @@ class BalanceViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 0
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return balanceHistories.count
+        return 0
     }
-    
-    
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("BalanceTableViewCell", forIndexPath: indexPath) as! BalanceTableViewCell
-    
-        let balanceHistory = balanceHistories[indexPath.row]
 
-        cell.changedAmountLabel.text = String(balanceHistory.changedAmount)
-        cell.dateLabel.text = String(balanceHistory.balanceChange)
-        cell.totalAmountLabel.text = String(balanceHistory.newBalance)
-    
-        return cell
-        
-    }
-    
-//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//    print("YO")
-//    }
-    
-    
-    
     /*
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
@@ -123,15 +86,14 @@ class BalanceViewController: UITableViewController {
     }
     */
 
-    
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-
+    */
 
 }

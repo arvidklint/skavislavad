@@ -27,7 +27,7 @@ class ProfileViewController: UIViewController {
             currentBalance.text = String(newbalance)
             
             // UPPDATERAR SALDO
-            Alamofire.request(.PUT, "http://localhost:3000/api/user/Emil", parameters : ["balance" : newbalance]).response { (request, response, data, error) in
+            Alamofire.request(.PUT, "http://localhost:3000/api/user/Emil", parameters : ["balance" : Int(inputBalance)!]).response { (request, response, data, error) in
                 print("User balance has been updated.")
                 print("New balance is: \(newbalance)")
             }

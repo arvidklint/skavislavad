@@ -294,12 +294,22 @@ router.route('/balancehistory')
     })
 
     .get(function(req, res) {
-        balanceHistory.find(function(err, balancehistory) {
+        BalanceHistory.find(function(err, balancehistories) {
             if (err){
                 res.send(err);
             }
-            res.json(balanceHistory);
+            res.json(balancehistories);
         });
+    });
+
+router.route('/balancehistory/:userName')
+    .get(function(req, res){
+        BalanceHistory.find({ userName: req.params.userName }, function(err, balancehistories) {
+            if (err){
+                res.send(err);
+            }
+            res.json(balancehistories);
+        }).sort( { "balanceChange" : -1 } );
     });
 
 

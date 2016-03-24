@@ -10,6 +10,10 @@
 		20D6F3F71CA2BE6E0081D247 /* BalanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D6F3F61CA2BE6E0081D247 /* BalanceViewController.swift */; };
 		20D6F3FB1CA2CD040081D247 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D6F3FA1CA2CD040081D247 /* ProfileViewController.swift */; };
 		20D6F3FD1CA2D5210081D247 /* ProfileUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D6F3FC1CA2D5210081D247 /* ProfileUser.swift */; };
+		20D6F3FF1CA422220081D247 /* Balance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D6F3FE1CA422220081D247 /* Balance.swift */; };
+		20D6F4051CA432ED0081D247 /* BalanceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D6F4041CA432ED0081D247 /* BalanceTableViewCell.swift */; };
+		20D6F4071CA44CC70081D247 /* ProfileAllBetEventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D6F4061CA44CC70081D247 /* ProfileAllBetEventsTableViewController.swift */; };
+		20D6F4091CA44DA00081D247 /* ProfileCreatedBetEventsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D6F4081CA44DA00081D247 /* ProfileCreatedBetEventsTableViewController.swift */; };
 		AEF566B56A2329E2AEA60F93 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88E44011B2B5E556132B42ED /* Pods.framework */; };
 		FE330FFE1C9EB5F800F8188A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE330FFD1C9EB5F800F8188A /* AppDelegate.swift */; };
 		FE3310001C9EB5F800F8188A /* BearViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE330FFF1C9EB5F800F8188A /* BearViewController.swift */; };
@@ -56,6 +60,10 @@
 		20D6F3F61CA2BE6E0081D247 /* BalanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceViewController.swift; sourceTree = "<group>"; };
 		20D6F3FA1CA2CD040081D247 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		20D6F3FC1CA2D5210081D247 /* ProfileUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileUser.swift; sourceTree = "<group>"; };
+		20D6F3FE1CA422220081D247 /* Balance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Balance.swift; sourceTree = "<group>"; };
+		20D6F4041CA432ED0081D247 /* BalanceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BalanceTableViewCell.swift; sourceTree = "<group>"; };
+		20D6F4061CA44CC70081D247 /* ProfileAllBetEventsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileAllBetEventsTableViewController.swift; sourceTree = "<group>"; };
+		20D6F4081CA44DA00081D247 /* ProfileCreatedBetEventsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCreatedBetEventsTableViewController.swift; sourceTree = "<group>"; };
 		503F78ECF298F247A0972E9B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		88E44011B2B5E556132B42ED /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE330FFA1C9EB5F800F8188A /* skavislavad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = skavislavad.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,6 +162,9 @@
 				FE58AD691CA32A5A00855E7C /* NewBetEventViewController.swift */,
 				FE8EAA4F1C9EE7E000C1800C /* Bear.swift */,
 				FE3310011C9EB5F800F8188A /* Main.storyboard */,
+				20D6F4081CA44DA00081D247 /* ProfileCreatedBetEventsTableViewController.swift */,
+				20D6F4061CA44CC70081D247 /* ProfileAllBetEventsTableViewController.swift */,
+				20D6F3FE1CA422220081D247 /* Balance.swift */,
 				20D6F3FA1CA2CD040081D247 /* ProfileViewController.swift */,
 				20D6F3FC1CA2D5210081D247 /* ProfileUser.swift */,
 				20D6F3F61CA2BE6E0081D247 /* BalanceViewController.swift */,
@@ -166,6 +177,7 @@
 				FE3310041C9EB5F800F8188A /* Assets.xcassets */,
 				FE3310061C9EB5F800F8188A /* LaunchScreen.storyboard */,
 				FE3310091C9EB5F800F8188A /* Info.plist */,
+				20D6F4041CA432ED0081D247 /* BalanceTableViewCell.swift */,
 			);
 			path = skavislavad;
 			sourceTree = "<group>";
@@ -373,16 +385,20 @@
 			files = (
 				FE3310001C9EB5F800F8188A /* BearViewController.swift in Sources */,
 				FE33102C1C9EDC2500F8188A /* RatingControl.swift in Sources */,
+				20D6F4051CA432ED0081D247 /* BalanceTableViewCell.swift in Sources */,
 				FE330FFE1C9EB5F800F8188A /* AppDelegate.swift in Sources */,
 				FE430ED81CA18857009282AC /* BetEvent.swift in Sources */,
 				20D6F3FD1CA2D5210081D247 /* ProfileUser.swift in Sources */,
 				FE8EAA581C9EF63B00C1800C /* BearTableViewController.swift in Sources */,
 				FE8EAA541C9EEDBE00C1800C /* BearTableViewCell.swift in Sources */,
+				20D6F4091CA44DA00081D247 /* ProfileCreatedBetEventsTableViewController.swift in Sources */,
 				20D6F3FB1CA2CD040081D247 /* ProfileViewController.swift in Sources */,
 				FE58AD6A1CA32A5A00855E7C /* NewBetEventViewController.swift in Sources */,
 				FE8EAA501C9EE7E000C1800C /* Bear.swift in Sources */,
 				20D6F3F71CA2BE6E0081D247 /* BalanceViewController.swift in Sources */,
+				20D6F4071CA44CC70081D247 /* ProfileAllBetEventsTableViewController.swift in Sources */,
 				FE430ED41CA177D0009282AC /* BetFeedTableViewController.swift in Sources */,
+				20D6F3FF1CA422220081D247 /* Balance.swift in Sources */,
 				FE430ED61CA1788C009282AC /* BetFeedTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
