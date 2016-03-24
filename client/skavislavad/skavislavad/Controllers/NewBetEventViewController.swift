@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-class NewBetEventViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
+class NewBetEventViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var titleInput: UITextField!
     @IBOutlet weak var descriptionInput: UITextView!
@@ -89,14 +89,25 @@ class NewBetEventViewController: UIViewController, UITextFieldDelegate, UITextVi
             .responseJSON { response in
                 let json = JSON(response.result.value!)
                 print(json)
-                self.dismissViewControllerAnimated(false, completion: nil)
+                
                 self.titleInput.text = ""
                 self.descriptionInput.text = ""
                 self.betAmountInput.text = ""
+                self.dismissViewControllerAnimated(false, completion: nil)
+                
+                // Close the view and go back to the list in some way.
             }
             .responseString { response in
                 print("Response String: \(response.result.value)")
             }
+    }
+    
+    @IBAction func cancelNewBetEvent(sender: UIBarButtonItem) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func close() {
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
 }
