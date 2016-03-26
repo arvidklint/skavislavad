@@ -40,17 +40,23 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("viewn har laddat")
+        
+        if let username = NSUserDefaults.standardUserDefaults().stringForKey("username") {
+                Alamofire.request(.GET, "http://localhost:3000/api/user/\(username)").responseJSON { response in
+            
+                let json = JSON(response.result.value!)
+                let user = ProfileUser(json: json)
+                print(user.getBalance())
+                self.currentBalance.text = String(user.balance)
+                self.profileName.text = user.username
+            }
+        } else {
+            showMessage("Varning", message: "Hittade inte användaren")
+        }
         
         // Do any additional setup after loading the view.
         
-        Alamofire.request(.GET, "http://localhost:3000/api/user/Emil").responseJSON { response in
-            
-            let json = JSON(response.result.value!)
-            let user = ProfileUser(json: json)
-            print(user.getBalance())
-            self.currentBalance.text = String(user.balance)
-        }
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -59,6 +65,24 @@ class ProfileViewController: UIViewController {
     }
     
     
+    @IBAction func logout(sender: UIButton) {
+        NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "username")
+        NSUserDefaults.standardUserDefaults().setObject(false, forKey: "userLoggedIn")
+        self.performSegueWithIdentifier("Logout", sender: self)
+    }
+    
+    func logoutHandler(alert: UIAlertAction!) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func showMessage(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        let okAction = UIAlertAction(title: "Ok", style: .Default, handler: nil)
+        
+        alert.addAction(okAction)
+        
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
     
     /*
     // MARK: - Navigation

@@ -58,14 +58,17 @@ class BetFeedTableViewController: UITableViewController {
         
         let betEvent = betEvents[indexPath.row]
         cell.betCellLabel.text = betEvent.title
-        cell.betDescription.text = String(betEvent.betAmount!)
+        cell.betDescription.text = String(betEvent.desc);
+        print(cell.betDescription.text)
 
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        print("YO")
-    }
+//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        print("YO")
+//    }
+    
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -102,14 +105,30 @@ class BetFeedTableViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "ShowBetEvent" {
+            let betEventDetailController = segue.destinationViewController as! BetEventViewController
+            
+            if let selectedBetCell = sender as? BetFeedTableViewCell {
+                let indexPath = tableView.indexPathForCell(selectedBetCell)!
+                let selectedBet = betEvents[indexPath.row]
+                betEventDetailController.bet = selectedBet
+            }
+        }
     }
-    */
+    
+    // MARK: Actions
+    @IBAction func newBetEvent(sender: UIBarButtonItem) {
+        let userLoggedIn = NSUserDefaults.standardUserDefaults().boolForKey("userLoggedIn")
+        
+        if userLoggedIn {
+            self.performSegueWithIdentifier("NewBetEvent", sender: self)
+        } 
+    }
+    
 
 }

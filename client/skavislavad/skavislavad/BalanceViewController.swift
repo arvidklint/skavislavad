@@ -11,7 +11,6 @@ import Alamofire
 import SwiftyJSON
 
 class BalanceViewController: UITableViewController {
-    let loggedInUser = "Emil"
     var balanceHistories = [Balance]()
     @IBAction func cancelButton(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
@@ -29,7 +28,9 @@ class BalanceViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        Alamofire.request(.GET, "http://localhost:3000/api/balancehistory/\(loggedInUser)").responseJSON { response in
+        let username = NSUserDefaults.standardUserDefaults().stringForKey("username")
+        
+        Alamofire.request(.GET, "http://localhost:3000/api/balancehistory/\(username!)").responseJSON { response in
             
             let json = JSON(response.result.value!)
             for index in 0..<json.count {

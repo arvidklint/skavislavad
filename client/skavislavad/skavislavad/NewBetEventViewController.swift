@@ -16,6 +16,8 @@ class NewBetEventViewController: UIViewController, UITextFieldDelegate, UITextVi
     @IBOutlet weak var descriptionInput: UITextView!
     @IBOutlet weak var betAmountInput: UITextField!
     
+    let username = NSUserDefaults.standardUserDefaults().stringForKey("username")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,10 +26,6 @@ class NewBetEventViewController: UIViewController, UITextFieldDelegate, UITextVi
         betAmountInput.delegate = self
         // Handle the text field’s user input through delegate callbacks.
         print("did load")
-        
-        
-        
-        
     }
     
     // MARK: UITextFieldDelegate
@@ -79,7 +77,7 @@ class NewBetEventViewController: UIViewController, UITextFieldDelegate, UITextVi
         
         let parameters = [
             "betName": self.titleInput.text,
-            "userName": "arvidsat",
+            "userName": username,
             "betAmount": betAmountInput.text,
             "description": self.descriptionInput.text
         ]

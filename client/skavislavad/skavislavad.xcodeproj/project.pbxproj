@@ -24,10 +24,7 @@
 		FE3310131C9EB5F800F8188A /* skavislavadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3310121C9EB5F800F8188A /* skavislavadTests.swift */; };
 		FE33101E1C9EB5F800F8188A /* skavislavadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE33101D1C9EB5F800F8188A /* skavislavadUITests.swift */; };
 		FE33102C1C9EDC2500F8188A /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE33102B1C9EDC2500F8188A /* RatingControl.swift */; };
-		FE430ED41CA177D0009282AC /* BetFeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE430ED31CA177D0009282AC /* BetFeedTableViewController.swift */; };
 		FE430ED61CA1788C009282AC /* BetFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE430ED51CA1788C009282AC /* BetFeedTableViewCell.swift */; };
-		FE430ED81CA18857009282AC /* BetEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE430ED71CA18857009282AC /* BetEvent.swift */; };
-		FE58AD6A1CA32A5A00855E7C /* NewBetEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE58AD691CA32A5A00855E7C /* NewBetEventViewController.swift */; };
 		FE8EAA501C9EE7E000C1800C /* Bear.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8EAA4F1C9EE7E000C1800C /* Bear.swift */; };
 		FE8EAA511C9EE7E000C1800C /* Bear.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8EAA4F1C9EE7E000C1800C /* Bear.swift */; };
 		FE8EAA521C9EE7E000C1800C /* Bear.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8EAA4F1C9EE7E000C1800C /* Bear.swift */; };
@@ -37,6 +34,11 @@
 		FE8EAA581C9EF63B00C1800C /* BearTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8EAA571C9EF63B00C1800C /* BearTableViewController.swift */; };
 		FE8EAA591C9EF63B00C1800C /* BearTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8EAA571C9EF63B00C1800C /* BearTableViewController.swift */; };
 		FE8EAA5A1C9EF63B00C1800C /* BearTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8EAA571C9EF63B00C1800C /* BearTableViewController.swift */; };
+		FECE7B381CA6A45F00E1EE9C /* NewBetEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECE7B371CA6A45F00E1EE9C /* NewBetEventViewController.swift */; };
+		FECE7B3A1CA6A47B00E1EE9C /* BetFeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECE7B391CA6A47B00E1EE9C /* BetFeedTableViewController.swift */; };
+		FECE7B3C1CA6A4B000E1EE9C /* BetEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECE7B3B1CA6A4B000E1EE9C /* BetEvent.swift */; };
+		FECE7B441CA6AA0600E1EE9C /* BetEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECE7B431CA6AA0600E1EE9C /* BetEventViewController.swift */; };
+		FECE7B461CA6E20200E1EE9C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECE7B451CA6E20200E1EE9C /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,13 +84,15 @@
 		FE33101D1C9EB5F800F8188A /* skavislavadUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skavislavadUITests.swift; sourceTree = "<group>"; };
 		FE33101F1C9EB5F900F8188A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE33102B1C9EDC2500F8188A /* RatingControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
-		FE430ED31CA177D0009282AC /* BetFeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BetFeedTableViewController.swift; path = Controllers/BetFeedTableViewController.swift; sourceTree = "<group>"; };
 		FE430ED51CA1788C009282AC /* BetFeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetFeedTableViewCell.swift; sourceTree = "<group>"; };
-		FE430ED71CA18857009282AC /* BetEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BetEvent.swift; path = Models/BetEvent.swift; sourceTree = "<group>"; };
-		FE58AD691CA32A5A00855E7C /* NewBetEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewBetEventViewController.swift; path = Controllers/NewBetEventViewController.swift; sourceTree = "<group>"; };
 		FE8EAA4F1C9EE7E000C1800C /* Bear.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bear.swift; sourceTree = "<group>"; };
 		FE8EAA531C9EEDBE00C1800C /* BearTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BearTableViewCell.swift; sourceTree = "<group>"; };
 		FE8EAA571C9EF63B00C1800C /* BearTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BearTableViewController.swift; sourceTree = "<group>"; };
+		FECE7B371CA6A45F00E1EE9C /* NewBetEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewBetEventViewController.swift; sourceTree = "<group>"; };
+		FECE7B391CA6A47B00E1EE9C /* BetFeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetFeedTableViewController.swift; sourceTree = "<group>"; };
+		FECE7B3B1CA6A4B000E1EE9C /* BetEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetEvent.swift; sourceTree = "<group>"; };
+		FECE7B431CA6AA0600E1EE9C /* BetEventViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetEventViewController.swift; sourceTree = "<group>"; };
+		FECE7B451CA6E20200E1EE9C /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,19 +165,11 @@
 			children = (
 				FE330FFD1C9EB5F800F8188A /* AppDelegate.swift */,
 				FE330FFF1C9EB5F800F8188A /* BearViewController.swift */,
-				FE58AD691CA32A5A00855E7C /* NewBetEventViewController.swift */,
-				FE8EAA4F1C9EE7E000C1800C /* Bear.swift */,
 				FE3310011C9EB5F800F8188A /* Main.storyboard */,
 				20D6F40A1CA4974F0081D247 /* ProfileCreatedBetEventsTableViewCell.swift */,
-				20D6F4081CA44DA00081D247 /* ProfileCreatedBetEventsTableViewController.swift */,
-				20D6F4061CA44CC70081D247 /* ProfileAllBetEventsTableViewController.swift */,
-				20D6F3FE1CA422220081D247 /* Balance.swift */,
-				20D6F3FA1CA2CD040081D247 /* ProfileViewController.swift */,
-				20D6F3FC1CA2D5210081D247 /* ProfileUser.swift */,
-				20D6F3F61CA2BE6E0081D247 /* BalanceViewController.swift */,
+				FECE7B3E1CA6A66100E1EE9C /* Controllers */,
+				FECE7B3D1CA6A62D00E1EE9C /* Models */,
 				FE430ED51CA1788C009282AC /* BetFeedTableViewCell.swift */,
-				FE430ED31CA177D0009282AC /* BetFeedTableViewController.swift */,
-				FE430ED71CA18857009282AC /* BetEvent.swift */,
 				FE8EAA571C9EF63B00C1800C /* BearTableViewController.swift */,
 				FE8EAA531C9EEDBE00C1800C /* BearTableViewCell.swift */,
 				FE33102B1C9EDC2500F8188A /* RatingControl.swift */,
@@ -201,6 +197,32 @@
 				FE33101F1C9EB5F900F8188A /* Info.plist */,
 			);
 			path = skavislavadUITests;
+			sourceTree = "<group>";
+		};
+		FECE7B3D1CA6A62D00E1EE9C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				20D6F3FC1CA2D5210081D247 /* ProfileUser.swift */,
+				FECE7B3B1CA6A4B000E1EE9C /* BetEvent.swift */,
+				FE8EAA4F1C9EE7E000C1800C /* Bear.swift */,
+				20D6F3FE1CA422220081D247 /* Balance.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		FECE7B3E1CA6A66100E1EE9C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FECE7B451CA6E20200E1EE9C /* LoginViewController.swift */,
+				FECE7B371CA6A45F00E1EE9C /* NewBetEventViewController.swift */,
+				20D6F4081CA44DA00081D247 /* ProfileCreatedBetEventsTableViewController.swift */,
+				20D6F3FA1CA2CD040081D247 /* ProfileViewController.swift */,
+				20D6F3F61CA2BE6E0081D247 /* BalanceViewController.swift */,
+				FECE7B391CA6A47B00E1EE9C /* BetFeedTableViewController.swift */,
+				FECE7B431CA6AA0600E1EE9C /* BetEventViewController.swift */,
+				20D6F4061CA44CC70081D247 /* ProfileAllBetEventsTableViewController.swift */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -390,18 +412,20 @@
 				FE33102C1C9EDC2500F8188A /* RatingControl.swift in Sources */,
 				20D6F4051CA432ED0081D247 /* BalanceTableViewCell.swift in Sources */,
 				FE330FFE1C9EB5F800F8188A /* AppDelegate.swift in Sources */,
-				FE430ED81CA18857009282AC /* BetEvent.swift in Sources */,
+				FECE7B441CA6AA0600E1EE9C /* BetEventViewController.swift in Sources */,
 				20D6F3FD1CA2D5210081D247 /* ProfileUser.swift in Sources */,
 				FE8EAA581C9EF63B00C1800C /* BearTableViewController.swift in Sources */,
 				FE8EAA541C9EEDBE00C1800C /* BearTableViewCell.swift in Sources */,
+				FECE7B461CA6E20200E1EE9C /* LoginViewController.swift in Sources */,
 				20D6F4091CA44DA00081D247 /* ProfileCreatedBetEventsTableViewController.swift in Sources */,
 				20D6F40B1CA4974F0081D247 /* ProfileCreatedBetEventsTableViewCell.swift in Sources */,
+				FECE7B3A1CA6A47B00E1EE9C /* BetFeedTableViewController.swift in Sources */,
 				20D6F3FB1CA2CD040081D247 /* ProfileViewController.swift in Sources */,
-				FE58AD6A1CA32A5A00855E7C /* NewBetEventViewController.swift in Sources */,
 				FE8EAA501C9EE7E000C1800C /* Bear.swift in Sources */,
+				FECE7B3C1CA6A4B000E1EE9C /* BetEvent.swift in Sources */,
 				20D6F3F71CA2BE6E0081D247 /* BalanceViewController.swift in Sources */,
 				20D6F4071CA44CC70081D247 /* ProfileAllBetEventsTableViewController.swift in Sources */,
-				FE430ED41CA177D0009282AC /* BetFeedTableViewController.swift in Sources */,
+				FECE7B381CA6A45F00E1EE9C /* NewBetEventViewController.swift in Sources */,
 				20D6F3FF1CA422220081D247 /* Balance.swift in Sources */,
 				FE430ED61CA1788C009282AC /* BetFeedTableViewCell.swift in Sources */,
 			);

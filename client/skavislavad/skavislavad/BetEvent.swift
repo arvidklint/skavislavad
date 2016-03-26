@@ -14,13 +14,13 @@ class BetEvent {
     // MARK: Properties
     
     var title: String
-//    var desc: String
+    var desc: String
     var betAmount: Int?
     var username: String
     
     init?(json: JSON) {
         self.title = json["betName"].stringValue
-//        self.desc = json["description"].stringValue
+        self.desc = json["description"].stringValue
         self.betAmount = json["betAmount"].intValue
         self.username = json["userName"].stringValue
         

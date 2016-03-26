@@ -4,9 +4,9 @@ var app = express();                 // define our app using express
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 // <<<<<<< UNCOMMENT WHEN WORKING LOCAL! >>>>>>>
-// mongoose.connect('mongodb://localhost:27017/test'); 
+mongoose.connect('mongodb://localhost:27017/test');
 
-mongoose.connect('mongodb://projekt:projekt@ds021969.mlab.com:21969/internetprogrammering16'); // anv: projekt, pw: projekt
+// mongoose.connect('mongodb://projekt:projekt@ds021969.mlab.com:21969/internetprogrammering16'); // anv: projekt, pw: projekt
 
 
 var Bear = require('./models/bear');
@@ -141,10 +141,10 @@ router.route('/user/:userName')
                 }
 
                 // Create a new BalanceHistory instance with username, new balance, and the change, and saves it.
-                var balancehistory = new BalanceHistory({ 
-                    userName : user.userName, 
-                    newBalance : user.balance, 
-                    changedAmount : req.body.balance 
+                var balancehistory = new BalanceHistory({
+                    userName : user.userName,
+                    newBalance : user.balance,
+                    changedAmount : req.body.balance
                 });
 
                 balancehistory.save(function(err){
@@ -178,7 +178,7 @@ router.route('/user/:userName')
         //     if (err){
         //         res.send(err);
         //     }
-           
+
         // });
     });
 
@@ -321,6 +321,63 @@ router.route('/balancehistory/:userName')
             res.json(balancehistories);
         }).sort( { "balanceChange" : -1 } );
     });
+
+router.route('/login/:userName')
+  .get(function(req, res) {
+    User.find({userName: req.params.userName}, function(err, users) {
+      if (err) {
+        res.json({
+          "status": 0,
+          "message": "Error"
+        });
+      }
+      if (users.length <= 0) {
+        res.json({
+          "status": 0,
+          "message": "Användaren hittades inte"
+        });
+      } else {
+        res.json({
+          "status": 1,
+          "message": "Success"
+        });
+      }
+    })
+  });
+
+router.route('/register')
+  .post(function(req, res) {
+    User.find({username: req.body.userName}, function(err, users) {
+      if (err) {
+        res.json({
+          "status": 0,
+          "message": "Error getting users"
+        });
+      }
+      if (users.length <= 0) {
+
+        var user = new User();
+        user.userName = req.body.userName;
+        user.save(function(err) {
+          if (err) {
+            res.json({
+              "status": 0,
+              "message": "Error creating the user"
+            });
+          }
+          res.json({
+            "status": 1,
+            "message": "Success"
+          });
+        });
+      } else {
+        res.json({
+          "status": 0,
+          "message": "Användaren finns redan"
+        });
+      }
+    })
+  });
 
 
 // all of our routes will be prefixed with /api
