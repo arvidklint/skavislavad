@@ -17,14 +17,16 @@ class BetEvent {
     var desc: String
     var betAmount: Int?
     var username: String
+    var id: String
     
     init?(json: JSON) {
         self.title = json["betName"].stringValue
         self.desc = json["description"].stringValue
         self.betAmount = json["betAmount"].intValue
         self.username = json["userName"].stringValue
+        self.id = json["_id"].stringValue
         
-        if (title.isEmpty || username.isEmpty) {
+        if (title.isEmpty || username.isEmpty || id.isEmpty) {
             return nil
         }
     }

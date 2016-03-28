@@ -59,7 +59,6 @@ class BetFeedTableViewController: UITableViewController {
         let betEvent = betEvents[indexPath.row]
         cell.betCellLabel.text = betEvent.title
         cell.betDescription.text = String(betEvent.desc);
-        print(cell.betDescription.text)
 
         return cell
     }

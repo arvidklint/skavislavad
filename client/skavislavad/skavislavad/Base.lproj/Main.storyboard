@@ -209,13 +209,13 @@
                                                 <rect key="frame" x="8" y="8" width="384" height="20"/>
                                             </variation>
                                         </label>
-                                        <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="12g-OV-S7E">
+                                        <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="12g-OV-S7E">
                                             <rect key="frame" x="0.0" y="32" width="564" height="70"/>
                                             <color key="backgroundColor" red="0.79312082409999995" green="0.89254236220000005" blue="0.56755753939999998" alpha="1" colorSpace="calibratedRGB"/>
                                             <accessibility key="accessibilityConfiguration">
                                                 <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
                                             </accessibility>
-                                            <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -294,7 +294,7 @@
                             </label>
                             <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kaV-Ep-8ea">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <color key="backgroundColor" red="0.79312082409999995" green="0.89254236220000005" blue="0.56755753939999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.71931495063921091" green="0.80727976403246082" blue="0.51445200177465544" alpha="1" colorSpace="calibratedRGB"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -329,6 +329,15 @@
                                     <action selector="no:" destination="tia-6q-ddO" eventType="touchUpInside" id="fjr-Mv-R45"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="22n-7A-yMA">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="20" y="341" width="360" height="21"/>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.79312082409999995" green="0.89254236220000005" blue="0.56755753939999998" alpha="1" colorSpace="calibratedRGB"/>
                         <variation key="default">
@@ -337,6 +346,7 @@
                                 <exclude reference="kaV-Ep-8ea"/>
                                 <exclude reference="jhh-nI-73n"/>
                                 <exclude reference="idH-sg-KJg"/>
+                                <exclude reference="22n-7A-yMA"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -345,12 +355,16 @@
                                 <include reference="kaV-Ep-8ea"/>
                                 <include reference="jhh-nI-73n"/>
                                 <include reference="idH-sg-KJg"/>
+                                <include reference="22n-7A-yMA"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="betDescription" destination="kaV-Ep-8ea" id="dWI-Mt-mOj"/>
+                        <outlet property="betStatus" destination="22n-7A-yMA" id="K9Z-rN-LIp"/>
                         <outlet property="betTitle" destination="oGd-tQ-T0e" id="nl5-wz-ZEi"/>
+                        <outlet property="noButton" destination="idH-sg-KJg" id="gbT-OL-fVn"/>
+                        <outlet property="yesButton" destination="jhh-nI-73n" id="gi9-27-zMo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nz3-9s-nne" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1028,6 +1042,7 @@
                         <viewControllerLayoutGuide type="bottom" id="lPu-1R-yST"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="vdT-NQ-CQP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Användarnamn" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wg8-Vs-eKC">

@@ -265,24 +265,57 @@ router.route('/placedbets')
 
         var placedbets = new PlacedBets();      // create a new instance of the placebets
 
-        assignParametersToSchema(req, placebets);
+        assignParametersToSchema(req, placedbets);
 
         // save the bear and check for errors
         placedbets.save(function(err) {
             if (err){
-                res.send(err);
+                res.json({
+                  "status": 0,
+                  "message": err
+                });
             }
-            res.json({ message: 'You placed a bet!' });
+            res.json({
+              "status": 1,
+              "message": "Success"
+            });
         });
     })
 
     .get(function(req, res) {
-        placedBets.find(function(err, placedbets) {
-            if (err){
-                res.send(err);
-            }
-            res.json(placedBets);
+      var userName = req.query.userName;
+      var betId = req.query.betId;
+      if (userName != undefined && betId != undefined) {
+        PlacedBets.find({"userName": userName, "betId": betId}, function(err, placedbets) {
+          if (err){
+            res.json({
+              "status": 0,
+              "value": err
+            });
+          }
+          if (placedbets.length > 0) {
+            res.json({
+              "status": 1,
+              "value": placedbets
+            });
+          } else {
+            res.json({
+              "status": 0,
+              "value": {}
+            });
+          }
         });
+      } else {
+        PlacedBets.find(function(err, placedbets) {
+          if (err) {
+            res.json({
+              "status": 0,
+              "value": err
+            });
+          }
+          res.json(placedbets);
+        })
+      }
     });
 
 
