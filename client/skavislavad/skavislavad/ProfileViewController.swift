@@ -46,7 +46,6 @@ class ProfileViewController: UIViewController {
             
                 let json = JSON(response.result.value!)
                 let user = ProfileUser(json: json)
-                print(user.getBalance())
                 self.currentBalance.text = String(user.balance)
                 self.profileName.text = user.username
             }

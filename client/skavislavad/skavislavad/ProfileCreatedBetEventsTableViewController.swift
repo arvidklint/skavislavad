@@ -19,21 +19,20 @@ class ProfileCreatedBetEventsTableViewController: UITableViewController {
     @IBOutlet var tableview: UITableView!
     
     var createdBetEvents = [BetEvent]()
-    let loggedInUser = "arvidsat"
+    let username = NSUserDefaults.standardUserDefaults().stringForKey("username")
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-        Alamofire.request(.GET, "http://localhost:3000/api/betevent/\(loggedInUser)").responseJSON { response in
+        Alamofire.request(.GET, "http://localhost:3000/api/betevent/\(username!)").responseJSON { response in
             
             let json = JSON(response.result.value!)
-            print(json)
+            print("Profile Bet events controller - Antal skapade bets: \(json.count)")
             for index in 0..<json.count {
                 self.createdBetEvents.append(BetEvent(json: json[index])!)
             }

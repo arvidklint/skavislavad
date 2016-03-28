@@ -4,9 +4,9 @@ var app = express();                 // define our app using express
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 // <<<<<<< UNCOMMENT WHEN WORKING LOCAL! >>>>>>>
-mongoose.connect('mongodb://localhost:27017/test');
+// mongoose.connect('mongodb://localhost:27017/test');
 
-// mongoose.connect('mongodb://projekt:projekt@ds021969.mlab.com:21969/internetprogrammering16'); // anv: projekt, pw: projekt
+mongoose.connect('mongodb://projekt:projekt@ds021969.mlab.com:21969/internetprogrammering16'); // anv: projekt, pw: projekt
 
 
 var Bear = require('./models/bear');
@@ -314,10 +314,39 @@ router.route('/placedbets')
             });
           }
           res.json(placedbets);
-        })
+        });
       }
     });
 
+router.route('/placedbets/:userName')
+    .get(function(req, res){
+        PlacedBets.find({ userName: req.params.userName }, function(err, placedbets) {
+            if (err){
+                res.send(err);
+            }
+
+            placedBetsIds = placedbets.map(function(bet){ return bet.betId; });
+
+            BetEvent.find({ _id: { $in: placedBetsIds }}, function(err, betevents){
+                if (err){
+                    res.send(err);
+                }
+                reformBetEvents = [];
+                for(var i in betevents){
+                    var reformedObj = {
+                        betAmount : betevents[i].betAmount,
+                        description : betevents[i].description,
+                        betName : betevents[i].betName,
+                        userName : betevents[i].userName,
+                        _id : betevents[i]["_id"],
+                        whatYouGuessed : placedbets[i].type
+                    };
+                    reformBetEvents.push(reformedObj);
+                }
+                res.json(reformBetEvents);
+            });    
+        });
+    });
 
 //Route for balancehistory
 router.route('/balancehistory')

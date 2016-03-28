@@ -7,8 +7,16 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class ProfileAllBetEventsTableViewController: UITableViewController {
+    
+    
+    let username = NSUserDefaults.standardUserDefaults().stringForKey("username")
+    var playedBets = [BetEvent]()
+    
+    @IBOutlet var tableview: UITableView!
     
     @IBAction func cancelButton(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
@@ -22,6 +30,18 @@ class ProfileAllBetEventsTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        Alamofire.request(.GET, "http://localhost:3000/api/placedbets/\(username!)").responseJSON { response in
+            let json = JSON(response.result.value!)
+            print(json)
+            
+            for index in 0..<json.count {
+                self.playedBets.append(BetEvent(json: json[index])!)
+            }
+            self.tableview.reloadData()
+        }
+        
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,23 +53,24 @@ class ProfileAllBetEventsTableViewController: UITableViewController {
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return playedBets.count
     }
 
-    /*
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCellWithIdentifier("ProfileAllBetEventsTableViewCell", forIndexPath: indexPath) as! ProfileAllBetEventsTableViewCell
+        
+        let betEvent = playedBets[indexPath.row]
+        cell.betEventTitle.text = betEvent.title
+        cell.betEventCreator.text = betEvent.username
+        cell.betEventAmount.text = String(betEvent.betAmount!)
         return cell
     }
-    */
 
     /*
     // Override to support conditional editing of the table view.
