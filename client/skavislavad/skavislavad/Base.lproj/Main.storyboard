@@ -310,7 +310,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="55" y="370" width="129" height="60"/>
+                                    <rect key="frame" x="55" y="452" width="129" height="60"/>
                                 </variation>
                                 <connections>
                                     <action selector="yes:" destination="tia-6q-ddO" eventType="touchUpInside" id="Y80-BS-Sgd"/>
@@ -323,7 +323,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="216" y="370" width="129" height="60"/>
+                                    <rect key="frame" x="216" y="452" width="129" height="60"/>
                                 </variation>
                                 <connections>
                                     <action selector="no:" destination="tia-6q-ddO" eventType="touchUpInside" id="fjr-Mv-R45"/>
@@ -335,7 +335,43 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="20" y="341" width="360" height="21"/>
+                                    <rect key="frame" x="20" y="423" width="360" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Antal ja:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ik-k0-cG1">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="77" y="370" width="62" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Antal nej:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MnV-kO-I1P">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="237" y="370" width="71" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nl8-S6-XP6">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="77" y="393" width="62" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Khi-pg-WvG">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="237" y="394" width="71" height="21"/>
                                 </variation>
                             </label>
                         </subviews>
@@ -347,6 +383,10 @@
                                 <exclude reference="jhh-nI-73n"/>
                                 <exclude reference="idH-sg-KJg"/>
                                 <exclude reference="22n-7A-yMA"/>
+                                <exclude reference="6ik-k0-cG1"/>
+                                <exclude reference="MnV-kO-I1P"/>
+                                <exclude reference="nl8-S6-XP6"/>
+                                <exclude reference="Khi-pg-WvG"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -356,6 +396,10 @@
                                 <include reference="jhh-nI-73n"/>
                                 <include reference="idH-sg-KJg"/>
                                 <include reference="22n-7A-yMA"/>
+                                <include reference="6ik-k0-cG1"/>
+                                <include reference="MnV-kO-I1P"/>
+                                <include reference="nl8-S6-XP6"/>
+                                <include reference="Khi-pg-WvG"/>
                             </mask>
                         </variation>
                     </view>
@@ -364,6 +408,8 @@
                         <outlet property="betStatus" destination="22n-7A-yMA" id="K9Z-rN-LIp"/>
                         <outlet property="betTitle" destination="oGd-tQ-T0e" id="nl5-wz-ZEi"/>
                         <outlet property="noButton" destination="idH-sg-KJg" id="gbT-OL-fVn"/>
+                        <outlet property="votedNo" destination="Khi-pg-WvG" id="KOQ-9V-TgS"/>
+                        <outlet property="votedYes" destination="nl8-S6-XP6" id="pJG-iN-dcG"/>
                         <outlet property="yesButton" destination="jhh-nI-73n" id="gi9-27-zMo"/>
                     </connections>
                 </viewController>
@@ -761,6 +807,7 @@
                                     <outlet property="createdBetAmount" destination="AVV-co-Cep" id="bXg-RJ-wVZ"/>
                                     <outlet property="createdBetName" destination="vJd-n6-nK4" id="dPe-XW-Ems"/>
                                     <outlet property="createdBetParticipants" destination="hqe-nH-3Dn" id="QWP-Ze-Bp6"/>
+                                    <segue destination="Mhf-EH-KCp" kind="show" identifier="detailedBetView" id="naT-hZ-Vso"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -900,6 +947,7 @@
                                     <outlet property="betEventAmount" destination="d9r-Dj-Mxw" id="b8Z-7D-gqp"/>
                                     <outlet property="betEventCreator" destination="yqx-vP-EMY" id="wk7-cF-cNF"/>
                                     <outlet property="betEventTitle" destination="RbX-OI-RbB" id="UWs-jB-K6a"/>
+                                    <segue destination="tia-6q-ddO" kind="show" identifier="backToBet" id="kCH-bJ-Ui8"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1081,11 +1129,12 @@
                         <outlet property="betAmountInput" destination="bix-zt-6ib" id="UCQ-kC-zoB"/>
                         <outlet property="descriptionInput" destination="tRu-Ux-5vA" id="HQd-94-urk"/>
                         <outlet property="titleInput" destination="Hfq-8b-gLf" id="o8L-jF-fGP"/>
+                        <segue destination="Mhf-EH-KCp" kind="show" identifier="summary" id="lfm-Ss-OJU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jut-nx-4v8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4470" y="655.5"/>
+            <point key="canvasLocation" x="3606" y="76.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="dbH-tg-sVL">
@@ -1293,7 +1342,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CqI-fV-qVf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5388" y="1485.75"/>
+            <point key="canvasLocation" x="5370" y="999.75"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ljr-0C-yh1">
@@ -1403,7 +1452,163 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NRM-YX-Hj8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3690" y="655.5"/>
+            <point key="canvasLocation" x="2850" y="553.5"/>
+        </scene>
+        <!--Summering-->
+        <scene sceneID="8Ti-oC-Lax">
+            <objects>
+                <viewController id="Mhf-EH-KCp" customClass="BetEventSummaryViewController" customModule="skavislavad" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WPd-GE-K17"/>
+                        <viewControllerLayoutGuide type="bottom" id="RDj-vc-eAz"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7vo-kv-zZX">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kr" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XX1-3z-Mfj">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="220" y="449" width="15" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Titel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O4z-PB-jfP">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="20" y="72" width="360" height="30"/>
+                                </variation>
+                            </label>
+                            <textView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="5Th-SH-QX9">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="20" y="142" width="360" height="222"/>
+                                </variation>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pengar" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sMd-cH-2LF">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="139" y="449" width="73" height="21"/>
+                                </variation>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FLt-Bp-s0S">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" red="0.58885056179999995" green="0.57179437460000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Vadslagningen lyckades!">
+                                    <color key="titleColor" red="1" green="0.98988441319999998" blue="0.99964489970000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="47" y="522" width="306" height="47"/>
+                                </variation>
+                                <connections>
+                                    <action selector="betSucceeded:" destination="Mhf-EH-KCp" eventType="touchUpInside" id="Vez-Qc-Qft"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OvX-mw-urB">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <color key="backgroundColor" red="0.51298303670000001" green="0.51533039700000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="Vadslagningen misslyckades!">
+                                    <color key="titleColor" red="1" green="0.98988441319999998" blue="0.99964489970000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="47" y="593" width="306" height="47"/>
+                                </variation>
+                                <connections>
+                                    <action selector="betUnsuccessful:" destination="Mhf-EH-KCp" eventType="touchUpInside" id="T2X-TR-faY"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vadslagning avslutad!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MVi-eY-9WP">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="47" y="553" width="306" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Det" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dII-sH-crL">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="117" y="582" width="34" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="resultat" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t6v-B4-o7r">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="148" y="582" width="134" height="21"/>
+                                </variation>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.79312082409999995" green="0.89254236220000005" blue="0.56755753939999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="XX1-3z-Mfj"/>
+                                <exclude reference="O4z-PB-jfP"/>
+                                <exclude reference="5Th-SH-QX9"/>
+                                <exclude reference="sMd-cH-2LF"/>
+                                <exclude reference="FLt-Bp-s0S"/>
+                                <exclude reference="OvX-mw-urB"/>
+                                <exclude reference="MVi-eY-9WP"/>
+                                <exclude reference="dII-sH-crL"/>
+                                <exclude reference="t6v-B4-o7r"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="XX1-3z-Mfj"/>
+                                <include reference="O4z-PB-jfP"/>
+                                <include reference="5Th-SH-QX9"/>
+                                <include reference="sMd-cH-2LF"/>
+                                <include reference="FLt-Bp-s0S"/>
+                                <include reference="OvX-mw-urB"/>
+                                <include reference="MVi-eY-9WP"/>
+                                <include reference="dII-sH-crL"/>
+                                <include reference="t6v-B4-o7r"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Summering" id="nlR-8Q-kb4">
+                        <barButtonItem key="leftBarButtonItem" title="Tillbaka" id="Pa1-H9-OoS">
+                            <connections>
+                                <action selector="cancelButton:" destination="Mhf-EH-KCp" id="2Q2-fB-Gxn"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="resultPostLabel" destination="t6v-B4-o7r" id="fuh-ew-T7v"/>
+                        <outlet property="resultPreLabel" destination="dII-sH-crL" id="oVI-36-xae"/>
+                        <outlet property="resultTitle" destination="MVi-eY-9WP" id="ewr-lf-7uy"/>
+                        <outlet property="successfulButton" destination="FLt-Bp-s0S" id="d1f-8U-OhS"/>
+                        <outlet property="summaryAmount" destination="sMd-cH-2LF" id="wdF-si-7c9"/>
+                        <outlet property="summaryDesc" destination="5Th-SH-QX9" id="ZN0-jQ-8wx"/>
+                        <outlet property="summaryTitle" destination="O4z-PB-jfP" id="SQ5-zr-HRp"/>
+                        <outlet property="unsuccessfulButton" destination="OvX-mw-urB" id="xF9-de-cmf"/>
+                        <segue destination="5n4-tP-HtO" kind="show" identifier="BackToList" id="9SF-mh-Vie"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="D7u-WQ-KyD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4464" y="100.5"/>
         </scene>
     </scenes>
     <resources>
@@ -1411,5 +1616,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="lkf-n6-VvR"/>
+        <segue reference="kCH-bJ-Ui8"/>
+        <segue reference="lfm-Ss-OJU"/>
+        <segue reference="9SF-mh-Vie"/>
     </inferredMetricsTieBreakers>
 </document>

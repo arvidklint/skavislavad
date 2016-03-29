@@ -116,5 +116,20 @@ class ProfileAllBetEventsTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "backToBet" {
+            let betEventView = segue.destinationViewController as! BetEventViewController
+            
+            if let selectedBetCell = sender as? ProfileAllBetEventsTableViewCell {
+                let indexPath = tableView.indexPathForCell(selectedBetCell)!
+                let selectedBet = playedBets[indexPath.row]
+                betEventView.bet = selectedBet
+            }
+        }
+    }
 
 }

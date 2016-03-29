@@ -26,7 +26,8 @@ class BetEvent {
         self.username = json["userName"].stringValue
         self.id = json["_id"].stringValue
         
-        if (title.isEmpty || username.isEmpty || id.isEmpty) {
+        if (title.isEmpty || username.isEmpty) {
+            //|| id.isEmpty) {
             return nil
         }
     }

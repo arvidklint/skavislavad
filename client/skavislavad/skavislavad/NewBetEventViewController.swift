@@ -17,6 +17,7 @@ class NewBetEventViewController: UIViewController, UITextFieldDelegate, UITextVi
     @IBOutlet weak var betAmountInput: UITextField!
     
     let username = NSUserDefaults.standardUserDefaults().stringForKey("username")
+    var createdBet : BetEvent?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,22 +82,21 @@ class NewBetEventViewController: UIViewController, UITextFieldDelegate, UITextVi
             "betAmount": betAmountInput.text,
             "description": self.descriptionInput.text
         ]
-        print(parameters)
         
         Alamofire.request(.POST, "http://localhost:3000/api/betevent", parameters: parameters)
             .responseJSON { response in
+                // add betevent to return in backend.js
                 let json = JSON(response.result.value!)
-                print(json)
+                self.createdBet = BetEvent(json: json["event"])!
                 
                 self.titleInput.text = ""
                 self.descriptionInput.text = ""
                 self.betAmountInput.text = ""
-                self.dismissViewControllerAnimated(false, completion: nil)
-                
+
+                self.dismissViewControllerAnimated(false, completion:{
+                    self.performSegueWithIdentifier("summary", sender: self)
+                })
                 // Close the view and go back to the list in some way.
-            }
-            .responseString { response in
-                print("Response String: \(response.result.value)")
             }
     }
     
@@ -108,4 +108,13 @@ class NewBetEventViewController: UIViewController, UITextFieldDelegate, UITextVi
         dismissViewControllerAnimated(true, completion: nil)
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        if segue.identifier == "summary" {
+            let betEventSummary = segue.destinationViewController as! BetEventSummaryViewController
+            
+            betEventSummary.createdBet = self.createdBet
+        }
+    }
 }

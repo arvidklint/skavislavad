@@ -70,6 +70,11 @@ class ProfileCreatedBetEventsTableViewController: UITableViewController {
         return cell
     }
     
+    /*
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        self.performSegueWithIdentifier("detailedBetView", sender: self)
+    }
+    */
 
     /*
     // Override to support conditional editing of the table view.
@@ -106,14 +111,24 @@ class ProfileCreatedBetEventsTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "detailedBetView" {
+            let betEventSummary = segue.destinationViewController as! BetEventSummaryViewController
+            
+            if let selectedBetCell = sender as? ProfileCreatedBetEventsTableViewCell {
+                let indexPath = tableView.indexPathForCell(selectedBetCell)!
+                let selectedBet = createdBetEvents[indexPath.row]
+                betEventSummary.createdBet = selectedBet
+            }
+        }
     }
-    */
+    
 
 }
