@@ -197,7 +197,10 @@ router.route('/betevent')
             if (err){
                 res.send(err);
             }
-            res.json({ message: 'betevent created!' });
+            res.json({ 
+                message: 'betevent created!',
+                event: betevent
+            });
         });
     })
 
@@ -213,11 +216,40 @@ router.route('/betevent')
 
 // on routes that end in /betevent/:betevent_id
 // ----------------------------------------------------
-router.route('/betevent/:betevent_id')
+router.route('/betevent/id/:betId')
+
+
+    .get(function(req, res){
+        PlacedBets.find({betId : req.params.betId}, function(err, placedbets){
+            if (err){
+                res.send(err);
+            }
+
+            var yesVoter = [];
+            var noVoter = [];
+            console.log(placedbets);
+            console.log(req.params.betId);
+
+            for (var i in placedbets){
+                if(placedbets[i].type === "yes"){
+                    yesVoter.push(placedbets[i]);
+                }
+                else{
+                    noVoter.push(placedbets[i]);
+                }
+            }
+            res.json({
+                yesVoters:yesVoter, 
+                noVoters:noVoter
+            });
+
+        });
+
+    })
 
     // get the betevent with that id (accessed at GET http://localhost:3000/api/betevent/:betevent_id)
     .post(function(req, res) {
-        BetEvent.findById(req.params.betevent_id, function(err, betevent) {
+        BetEvent.findById(req.params.betId, function(err, betevent) {
 
             if (err){
                 res.send(err);
@@ -230,7 +262,7 @@ router.route('/betevent/:betevent_id')
     .put(function(req, res) {
 
         // use our betevent model to find the betevent we want
-        BetEvent.findById(req.params.betevent_id, function(err, betevent) {
+        BetEvent.findById(req.params.betId, function(err, betevent) {
 
             if (err){
                 res.send(err);
@@ -325,7 +357,7 @@ router.route('/placedbets/:userName')
                 res.send(err);
             }
 
-            placedBetsIds = placedbets.map(function(bet){ return bet.betId; });
+            var placedBetsIds = placedbets.map(function(bet){ return bet.betId; });
 
             BetEvent.find({ _id: { $in: placedBetsIds }}, function(err, betevents){
                 if (err){
@@ -347,6 +379,7 @@ router.route('/placedbets/:userName')
             });    
         });
     });
+
 
 //Route for balancehistory
 router.route('/balancehistory')
