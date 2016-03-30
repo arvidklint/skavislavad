@@ -1,22 +1,15 @@
 //
-//  BetFeedTableViewCell.swift
+//  ProfileAddFriendTableViewCell.swift
 //  skavislavad
 //
-//  Created by Arvid Sätterkvist on 22/03/16.
+//  Created by Emil Westin on 2016-03-30.
 //  Copyright © 2016 arvidsat. All rights reserved.
 //
 
 import UIKit
 
-class BetFeedTableViewCell: UITableViewCell {
+class ProfileAddFriendTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var betCellLabel: UILabel!
-    @IBOutlet weak var betDescription: UITextView!
-    @IBOutlet weak var betCellAmount: UILabel!
-    @IBOutlet weak var betCellThumbsUp: UILabel!
-    @IBOutlet weak var betCellThumbsDown: UILabel!
-    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

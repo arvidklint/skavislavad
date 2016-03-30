@@ -19,6 +19,7 @@ class BetEventViewController: UIViewController {
     @IBOutlet weak var noButton: UIButton!
     @IBOutlet weak var votedYes: UILabel!
     @IBOutlet weak var votedNo: UILabel!
+    @IBOutlet weak var betAmount: UILabel!
     
     let username = NSUserDefaults.standardUserDefaults().stringForKey("username")
     
@@ -33,9 +34,11 @@ class BetEventViewController: UIViewController {
         betTitle.text = bet?.title;
         betDescription.text = bet?.desc;
         
+        betAmount.text = String(bet!.betAmount!)
         yesButton.enabled = false
         noButton.enabled = false
         self.betStatus.text = "Laddar status..."
+        print(bet?.betAmount!)
         
         
         Alamofire.request(.GET, "http://localhost:3000/api/betevent/id/\(bet!.id)").responseJSON { response in
@@ -47,6 +50,7 @@ class BetEventViewController: UIViewController {
             print("antal nejsägare: \(noVoters)")
             self.votedYes.text = String(yesVoters)
             self.votedNo.text = String(noVoters)
+        
             
             
         }
