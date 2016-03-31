@@ -1,12 +1,12 @@
-// call the packages we need
-var express = require('express');        // call express
-var app = express();                 // define our app using express
+var express = require('express');
+var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-// <<<<<<< UNCOMMENT WHEN WORKING LOCAL! >>>>>>>
-// mongoose.connect('mongodb://localhost:27017/test');
 
-mongoose.connect('mongodb://projekt:projekt@ds021969.mlab.com:21969/internetprogrammering16'); // anv: projekt, pw: projekt
+// <<<<<<< UNCOMMENT WHEN WORKING LOCAL! >>>>>>>
+mongoose.connect('mongodb://localhost:27017/test');
+
+// mongoose.connect('mongodb://projekt:projekt@ds021969.mlab.com:21969/internetprogrammering16'); // anv: projekt, pw: projekt
 
 
 var Bear = require('./models/bear');
@@ -15,12 +15,19 @@ var BetEvent = require('./models/betevent');
 var PlacedBets = require('./models/placedbets');
 var BalanceHistory = require('./models/balancehistory');
 
+var userRequest = require('./controllers/userRequest');
+var betEventRequest = require('./controllers/betEventRequest');
+var placedBetsRequest = require('./controllers/placedBetsRequest');
+var balanceHistoryRequest = require('./controllers/balanceHistoryRequest');
+var loginRequest = require('./controllers/loginRequest');
+var registerRequest = require('./controllers/registerRequest');
+
 // configure app to use bodyParser()
 // this will let us get the data from a POST
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-var port = process.env.PORT || 3000;        // set our port
+var port = process.env.PORT || 3000;
 
 // ROUTES FOR OUR API
 // =============================================================================
@@ -29,7 +36,7 @@ var router = express.Router();              // get an instance of the express Ro
 // middleware to use for all requests
 router.use(function(req, res, next) {
     // do logging
-    console.log('Something is happening.');
+    // console.log('Something is happening.');
     next(); // make sure we go to the next routes and don't stop here
 });
 
@@ -83,31 +90,12 @@ router.route('/bears')
 
 //Route for Users
 router.route('/user')
-    .post(function(req, res) {
-
-        var user = new User();   // create a new instance of the User model
-
-        assignParametersToSchema(req, user);
-
-        // save the user and check for errors
-        user.save(function(err) {
-            if (err){
-                res.send(err);
-            }
-
-        res.json({ message: 'User created!' });
-        });
-    })
-
-    .get(function(req, res) {
-        User.find(function(err, users) {
-            if (err){
-                res.send(err);
-            }
-
-        res.json(users);
-        });
-    });
+  .post(function(req, res) {
+    userRequest.post(req, res);
+  })
+  .get(function(req, res) {
+    userRequest.get(req, res);
+  });
 
 
 // on routes that end in /user/:user_id
@@ -116,70 +104,17 @@ router.route('/user/:userName')
 
     // get the user with that id (accessed at GET http://localhost:3000/api/user/:user_id)
     .get(function(req, res) {
-        User.findOne({ userName: req.params.userName }, function(err, user) {
-            if (err){
-                res.send(err);
-            }
-            res.json(user);
-        });
+      userRequest.getUser(req.params.userName, res);
     })
 
     // update the user with this id (accessed at PUT http://localhost:3000/api/user/:user_id)
     .put(function(req, res) {
-
-        // use our user model to find the user we want
-        User.findOne({ userName : req.params.userName }, function(err, user) {
-            if (err){
-                res.send(err);
-            }
-            assignParametersToSchema(req, user);
-            // save the user
-            user.save(function(err) {
-                if (err){
-                    console.log('Error in user .put user save');
-                    res.send(err);
-                }
-
-                // Create a new BalanceHistory instance with username, new balance, and the change, and saves it.
-                var balancehistory = new BalanceHistory({
-                    userName : user.userName,
-                    newBalance : user.balance,
-                    changedAmount : req.body.balance
-                });
-
-                balancehistory.save(function(err){
-                    if(err){
-                        console.log('error in user .put balancehistory save');
-                        res.send(err);
-                    }
-                });
-
-                res.json({ message : 'User updated!' });
-            });
-        });
+        userRequest.putUser(req.params.userName, res);
     })
 
     // delete the user with this id (accessed at DELETE http://localhost:3000/api/user/:user_id)
     .delete(function(req, res) {
-        User.findOneAndRemove({ userName: req.params.userName  }, function(err, user) {
-            if (err){
-                res.send(err);
-            }
-            res.json({ message : 'Successfully deleted user' });
-            // user.remove(function(err){
-            //     if (err){
-            //         res.send(err);
-            //     }
-            //     res.json({ message : 'Successfully deleted user' });
-            // });
-        });
-        // User.remove(function(err, user) {
-        //     console.log('hej');
-        //     if (err){
-        //         res.send(err);
-        //     }
-
-        // });
+        userRequest.deleteUser(req.params.userName, res);
     });
 
 
@@ -187,259 +122,72 @@ router.route('/user/:userName')
 //Route for betevent
 router.route('/betevent')
     .post(function(req, res) {
-
-        var betevent = new BetEvent();      // create a new instance of the betevent model
-
-        assignParametersToSchema(req, betevent);
-
-        // save the betevent and check for errors
-        betevent.save(function(err) {
-            if (err){
-                res.send(err);
-            }
-            res.json({ message: 'betevent created!' });
-        });
+        betEventRequest.post(req, res);
     })
 
     .get(function(req, res) {
-        BetEvent.find(function(err, betevent) {
-            if (err){
-                res.send(err);
-            }
-            res.json(betevent);
-        });
+        betEventRequest.get(req, res);
     });
 
 
 // on routes that end in /betevent/:betevent_id
 // ----------------------------------------------------
-router.route('/betevent/:betevent_id')
-
+router.route('/betevent/id/:betevent_id')
     // get the betevent with that id (accessed at GET http://localhost:3000/api/betevent/:betevent_id)
-    .post(function(req, res) {
-        BetEvent.findById(req.params.betevent_id, function(err, betevent) {
-
-            if (err){
-                res.send(err);
-            }
-            res.json(betevent);
-        });
+    .get(function(req, res) {
+        betEventRequest.getUserById(req.params.betevent_id, res);
     })
 
     // update the betevent with this id (accessed at PUT http://localhost:3000/api/betevent/:betevent_id)
     .put(function(req, res) {
-
-        // use our betevent model to find the betevent we want
-        BetEvent.findById(req.params.betevent_id, function(err, betevent) {
-
-            if (err){
-                res.send(err);
-            }
-
-            assignParametersToSchema(req, betevent);
-
-            // save the betevent
-            betevent.save(function(err) {
-                if (err){
-                    res.send(err);
-                }
-                res.json({ message: 'Betevent updated!' });
-            });
-        });
+        betEventRequest.putUserById(req.params.betevent_id, res);
     });
 
 router.route('/betevent/:userName')
     .get(function(req, res){
-        BetEvent.find({ userName: req.params.userName }, function(err, betevents) {
-            if (err){
-                res.send(err);
-            }
-            res.json(betevents);
-        });
+        betEventRequest.getUser(req.params.userName, res);
     });
 
 
 //Route for placedbets
 router.route('/placedbets')
     .post(function(req, res) {
-
-        var placedbets = new PlacedBets();      // create a new instance of the placebets
-
-        assignParametersToSchema(req, placedbets);
-
-        // save the bear and check for errors
-        placedbets.save(function(err) {
-            if (err){
-                res.json({
-                  "status": 0,
-                  "message": err
-                });
-            }
-            res.json({
-              "status": 1,
-              "message": "Success"
-            });
-        });
+        placedBetsRequest.post(req, res);
     })
 
     .get(function(req, res) {
-      var userName = req.query.userName;
-      var betId = req.query.betId;
-      if (userName != undefined && betId != undefined) {
-        PlacedBets.find({"userName": userName, "betId": betId}, function(err, placedbets) {
-          if (err){
-            res.json({
-              "status": 0,
-              "value": err
-            });
-          }
-          if (placedbets.length > 0) {
-            res.json({
-              "status": 1,
-              "value": placedbets
-            });
-          } else {
-            res.json({
-              "status": 0,
-              "value": {}
-            });
-          }
-        });
-      } else {
-        PlacedBets.find(function(err, placedbets) {
-          if (err) {
-            res.json({
-              "status": 0,
-              "value": err
-            });
-          }
-          res.json(placedbets);
-        });
-      }
+        placedBetsRequest.get(req, res);
     });
 
 router.route('/placedbets/:userName')
     .get(function(req, res){
-        PlacedBets.find({ userName: req.params.userName }, function(err, placedbets) {
-            if (err){
-                res.send(err);
-            }
-
-            placedBetsIds = placedbets.map(function(bet){ return bet.betId; });
-
-            BetEvent.find({ _id: { $in: placedBetsIds }}, function(err, betevents){
-                if (err){
-                    res.send(err);
-                }
-                reformBetEvents = [];
-                for(var i in betevents){
-                    var reformedObj = {
-                        betAmount : betevents[i].betAmount,
-                        description : betevents[i].description,
-                        betName : betevents[i].betName,
-                        userName : betevents[i].userName,
-                        _id : betevents[i]["_id"],
-                        whatYouGuessed : placedbets[i].type
-                    };
-                    reformBetEvents.push(reformedObj);
-                }
-                res.json(reformBetEvents);
-            });    
-        });
+        placedBetsRequest.getPlacedBetsByUserName(req.params.userName, res);
     });
 
 //Route for balancehistory
 router.route('/balancehistory')
     .post(function(req, res) {
-
-        var balancehistory = new BalanceHistory();      // create a new instance of the BalanceHistory
-
-        assignParametersToSchema(req, balancehistory);
-
-        // save the bear and check for errors
-        balancehistory.save(function(err) {
-            if (err){
-                res.send(err);
-            }
-            res.json({ message: 'Your balance history!' });
-        });
+        balanceHistoryRequest.post(req, res);
     })
 
     .get(function(req, res) {
-        BalanceHistory.find(function(err, balancehistories) {
-            if (err){
-                res.send(err);
-            }
-            res.json(balancehistories);
-        });
+        balanceHistoryRequest.get(req, res);
     });
 
 router.route('/balancehistory/:userName')
     .get(function(req, res){
-        BalanceHistory.find({ userName: req.params.userName }, function(err, balancehistories) {
-            if (err){
-                res.send(err);
-            }
-            res.json(balancehistories);
-        }).sort( { "balanceChange" : -1 } );
+        balanceHistoryRequest.getBalanceHistoryByUserName(req.params.userName, res);
     });
 
 router.route('/login/:userName')
-  .get(function(req, res) {
-    User.find({userName: req.params.userName}, function(err, users) {
-      if (err) {
-        res.json({
-          "status": 0,
-          "message": "Error"
-        });
-      }
-      if (users.length <= 0) {
-        res.json({
-          "status": 0,
-          "message": "Användaren hittades inte"
-        });
-      } else {
-        res.json({
-          "status": 1,
-          "message": "Success"
-        });
-      }
-    })
-  });
+    .get(function(req, res) {
+        loginRequest.get(req, res);
+    });
 
 router.route('/register')
-  .post(function(req, res) {
-    User.find({username: req.body.userName}, function(err, users) {
-      if (err) {
-        res.json({
-          "status": 0,
-          "message": "Error getting users"
-        });
-      }
-      if (users.length <= 0) {
-
-        var user = new User();
-        user.userName = req.body.userName;
-        user.save(function(err) {
-          if (err) {
-            res.json({
-              "status": 0,
-              "message": "Error creating the user"
-            });
-          }
-          res.json({
-            "status": 1,
-            "message": "Success"
-          });
-        });
-      } else {
-        res.json({
-          "status": 0,
-          "message": "Användaren finns redan"
-        });
-      }
-    })
-  });
+    .post(function(req, res) {
+        registerRequest.post(req, res);
+    });
 
 
 // all of our routes will be prefixed with /api

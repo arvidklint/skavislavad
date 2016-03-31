@@ -6,7 +6,7 @@ var BetEventSchema = new Schema({
     userName: { type: String, required: true },
 		description: String,
     betAmount: Number,
-    startTime: Date,
+    startTime: { type: Date, default: Date.now },
     endTime: Date
 });
 
