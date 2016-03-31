@@ -132,16 +132,25 @@ router.route('/betevent')
 
 // on routes that end in /betevent/:betevent_id
 // ----------------------------------------------------
+
 router.route('/betevent/id/:betevent_id')
     // get the betevent with that id (accessed at GET http://localhost:3000/api/betevent/:betevent_id)
     .get(function(req, res) {
-        betEventRequest.getUserById(req.params.betevent_id, res);
-    })
+        betEventRequest.getBetEventById(req.params.betevent_id, res);
+    });
 
+router.route('/betevent/id/:betId')
     // update the betevent with this id (accessed at PUT http://localhost:3000/api/betevent/:betevent_id)
     .put(function(req, res) {
-        betEventRequest.putUserById(req.params.betevent_id, res);
+        betEventRequest.putBetEventById(req.params.betevent_id, res);
     });
+
+router.route('/betevent/votes/:betId')
+    .get(function(req, res){
+        placedBetsRequest.getVotes(req.params.betId, res);
+    });
+
+
 
 router.route('/betevent/:userName')
     .get(function(req, res){
@@ -163,6 +172,7 @@ router.route('/placedbets/:userName')
     .get(function(req, res){
         placedBetsRequest.getPlacedBetsByUserName(req.params.userName, res);
     });
+
 
 //Route for balancehistory
 router.route('/balancehistory')

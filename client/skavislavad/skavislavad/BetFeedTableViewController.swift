@@ -13,6 +13,8 @@ import SwiftyJSON
 class BetFeedTableViewController: UITableViewController {
 
     var betEvents = [BetEvent]()
+    var yesVotersArray = [Int]()
+    var noVotersArray = [Int]()
     @IBOutlet weak var tableview: UITableView!
 
     override func viewDidLoad() {
@@ -27,12 +29,28 @@ class BetFeedTableViewController: UITableViewController {
         Alamofire.request(.GET, "http://localhost:3000/api/betevent").responseJSON { response in
             
             let json = JSON(response.result.value!)
-            print(json)
+            //print(json)
             for index in 0..<json.count {
                 self.betEvents.append(BetEvent(json: json[index])!)
             }
-
-            self.tableview.reloadData()
+            self.yesVotersArray = [Int](count: self.betEvents.count, repeatedValue:0)
+            self.noVotersArray = [Int](count: self.betEvents.count, repeatedValue:0)
+            for i in 0..<self.betEvents.count {
+                Alamofire.request(.GET, "http://localhost:3000/api/betevent/id/\(self.betEvents[i].id)").responseJSON { response in
+                    let json = JSON(response.result.value!)
+                    print("index: \(i)")
+                    print(self.betEvents[i].title)
+                    //print(json)
+                    let yesVoters = json["yesVoters"].count
+                    let noVoters = json["noVoters"].count
+                    print(yesVoters)
+                    print(noVoters)
+                    self.yesVotersArray[i] = yesVoters
+                    self.noVotersArray[i] = noVoters
+                    
+                    self.tableview.reloadData()
+                }
+            }
         }
     }
 
@@ -57,8 +75,12 @@ class BetFeedTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("BetFeedTableViewCell", forIndexPath: indexPath) as! BetFeedTableViewCell
         
         let betEvent = betEvents[indexPath.row]
+        
         cell.betCellLabel.text = betEvent.title
-        cell.betDescription.text = String(betEvent.desc);
+        cell.betDescription.text = String(betEvent.desc)
+        cell.betCellAmount.text = String(betEvent.betAmount!)
+        cell.betCellThumbsUp.text = String(self.yesVotersArray[indexPath.row])
+        cell.betCellThumbsDown.text = String(self.noVotersArray[indexPath.row])
 
         return cell
     }

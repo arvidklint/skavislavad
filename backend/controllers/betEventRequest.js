@@ -21,7 +21,7 @@ module.exports.post = function(req, res) {
         if (err){
             res.json(r.error(err));
         }
-        res.json(r.post('betevent created!'));
+        res.json(r.post(betevent));
     });
 };
 
@@ -34,7 +34,7 @@ module.exports.get = function(req, res) {
     });
 };
 
-module.exports.getUserById = function(id, res) {
+module.exports.getBetEventById = function(id, res) {
     BetEvent.findById(id, function(err, betevent) {
         if (err){
             res.json(r.error(err));
@@ -43,7 +43,7 @@ module.exports.getUserById = function(id, res) {
     });
 };
 
-module.exports.putUserById = function(id, res) {
+module.exports.putBetEventById = function(id, res) {
     // use our betevent model to find the betevent we want
     BetEvent.findById(id, function(err, betevent) {
         if (err){
@@ -62,7 +62,7 @@ module.exports.putUserById = function(id, res) {
     });
 };
 
-module.exports.getUser = function(userName, res) {
+module.exports.getBeteEventsByUser = function(userName, res) {
     BetEvent.find({ userName: userName }, function(err, betevents) {
         if (err){
             res.json(r.error(err));

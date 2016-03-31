@@ -73,3 +73,31 @@ module.exports.getPlacedBetsByUserName = function(userName, res) {
         });
     });
 };
+
+
+module.exports.getVotes = function(betId, res) {
+    PlacedBets.find({betId : betId}, function(err, placedbets){
+        if (err){
+            res.json(r.error(err));
+        }
+
+        var yesVoterArray = [];
+        var noVoterArray = [];
+
+        for (var i in placedbets){
+            if(placedbets[i].type === "yes"){
+                yesVoterArray.push(placedbets[i]);
+            }
+            else{
+                noVoterArray.push(placedbets[i]);
+            }
+        }
+
+        var message = {
+            "yesVoters": yesVoterArray,
+            "noVoters": noVoterArray
+        };
+
+        res.json(r.get(message));
+    });
+};

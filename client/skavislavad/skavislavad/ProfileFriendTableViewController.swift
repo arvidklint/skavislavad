@@ -1,44 +1,35 @@
 //
-//  ProfileCreatedBetEventsTableViewController.swift
+//  ProfileFriendTableViewController.swift
 //  skavislavad
 //
-//  Created by Emil Westin on 2016-03-24.
+//  Created by Emil Westin on 2016-03-30.
 //  Copyright © 2016 arvidsat. All rights reserved.
 //
 
 import UIKit
-import Alamofire
-import SwiftyJSON
 
-class ProfileCreatedBetEventsTableViewController: UITableViewController {
+class ProfileFriendTableViewController: UITableViewController {
 
+    
+    @IBAction func addFriend(sender: AnyObject) {
+        
+    }
+    
+    
     @IBAction func cancelButton(sender: AnyObject) {
         dismissViewControllerAnimated(true, completion: nil)
     }
     
-    @IBOutlet var tableview: UITableView!
-    
-    var createdBetEvents = [BetEvent]()
-    let username = NSUserDefaults.standardUserDefaults().stringForKey("username")
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
-        Alamofire.request(.GET, "http://localhost:3000/api/betevent/\(username!)").responseJSON { response in
-            
-            let json = JSON(response.result.value!)
-            print("Profile Bet events controller - Antal skapade bets: \(json.count)")
-            for index in 0..<json.count {
-                self.createdBetEvents.append(BetEvent(json: json[index])!)
-            }
-            
-            self.tableview.reloadData()
-        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,30 +40,22 @@ class ProfileCreatedBetEventsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        // #warning Incomplete implementation, return the number of sections
+        return 0
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return createdBetEvents.count
+        return 0
     }
 
-    
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ProfileCreatedBetEventsTableViewCell", forIndexPath: indexPath) as! ProfileCreatedBetEventsTableViewCell
-        
-        let betEvent = createdBetEvents[indexPath.row]
-
-        cell.createdBetAmount.text = String(betEvent.betAmount!)
-        cell.createdBetName.text = betEvent.title
-        cell.createdBetParticipants.text = "0"
-        
-        return cell
-    }
-    
     /*
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier("detailedBetView", sender: self)
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+
+        // Configure the cell...
+
+        return cell
     }
     */
 
@@ -111,24 +94,14 @@ class ProfileCreatedBetEventsTableViewController: UITableViewController {
     }
     */
 
-    
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        
-        if segue.identifier == "detailedBetView" {
-            let betEventSummary = segue.destinationViewController as! BetEventSummaryViewController
-            
-            if let selectedBetCell = sender as? ProfileCreatedBetEventsTableViewCell {
-                let indexPath = tableView.indexPathForCell(selectedBetCell)!
-                let selectedBet = createdBetEvents[indexPath.row]
-                betEventSummary.createdBet = selectedBet
-            }
-        }
     }
-    
+    */
 
 }

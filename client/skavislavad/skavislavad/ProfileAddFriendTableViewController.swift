@@ -1,44 +1,43 @@
 //
-//  ProfileCreatedBetEventsTableViewController.swift
+//  ProfileAddFriendTableViewController.swift
 //  skavislavad
 //
-//  Created by Emil Westin on 2016-03-24.
+//  Created by Emil Westin on 2016-03-30.
 //  Copyright © 2016 arvidsat. All rights reserved.
 //
 
 import UIKit
-import Alamofire
-import SwiftyJSON
 
-class ProfileCreatedBetEventsTableViewController: UITableViewController {
+class ProfileAddFriendTableViewController: UITableViewController, UISearchResultsUpdating {
 
-    @IBAction func cancelButton(sender: AnyObject) {
-        dismissViewControllerAnimated(true, completion: nil)
-    }
     
-    @IBOutlet var tableview: UITableView!
+    let tableData = ["One","Two","Three","Twenty-One"]
+    var filteredTableData = [String]()
+    var resultSearchController = UISearchController()
     
-    var createdBetEvents = [BetEvent]()
-    let username = NSUserDefaults.standardUserDefaults().stringForKey("username")
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.resultSearchController = ({
+            let controller = UISearchController(searchResultsController: nil)
+            controller.searchResultsUpdater = self
+            controller.dimsBackgroundDuringPresentation = false
+            controller.searchBar.sizeToFit()
+            
+            self.tableView.tableHeaderView = controller.searchBar
+            
+            return controller
+        })()
+        
+        // Reload the table
+        self.tableView.reloadData()
+
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
-        
-        Alamofire.request(.GET, "http://localhost:3000/api/betevent/\(username!)").responseJSON { response in
-            
-            let json = JSON(response.result.value!)
-            print("Profile Bet events controller - Antal skapade bets: \(json.count)")
-            for index in 0..<json.count {
-                self.createdBetEvents.append(BetEvent(json: json[index])!)
-            }
-            
-            self.tableview.reloadData()
-        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,32 +48,49 @@ class ProfileCreatedBetEventsTableViewController: UITableViewController {
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return createdBetEvents.count
+        if (self.resultSearchController.active) {
+            return self.filteredTableData.count
+        }
+        else {
+            return self.tableData.count
+        }
     }
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ProfileCreatedBetEventsTableViewCell", forIndexPath: indexPath) as! ProfileCreatedBetEventsTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("ProfileAddFriendTableViewCell", forIndexPath: indexPath) as! ProfileAddFriendTableViewCell
         
-        let betEvent = createdBetEvents[indexPath.row]
-
-        cell.createdBetAmount.text = String(betEvent.betAmount!)
-        cell.createdBetName.text = betEvent.title
-        cell.createdBetParticipants.text = "0"
-        
-        return cell
+        // 3
+        if (self.resultSearchController.active) {
+            cell.textLabel?.text = filteredTableData[indexPath.row]
+            
+            return cell
+        }
+        else {
+            cell.textLabel?.text = tableData[indexPath.row]
+            
+            return cell
+        }
     }
     
-    /*
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier("detailedBetView", sender: self)
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController)
+    {
+        filteredTableData.removeAll(keepCapacity: false)
+        
+        let searchPredicate = NSPredicate(format: "SELF CONTAINS[c] %@", searchController.searchBar.text!)
+        let array = (tableData as NSArray).filteredArrayUsingPredicate(searchPredicate)
+        filteredTableData = array as! [String]
+        
+        self.tableView.reloadData()
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
@@ -111,24 +127,14 @@ class ProfileCreatedBetEventsTableViewController: UITableViewController {
     }
     */
 
-    
+    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
-        
-        if segue.identifier == "detailedBetView" {
-            let betEventSummary = segue.destinationViewController as! BetEventSummaryViewController
-            
-            if let selectedBetCell = sender as? ProfileCreatedBetEventsTableViewCell {
-                let indexPath = tableView.indexPathForCell(selectedBetCell)!
-                let selectedBet = createdBetEvents[indexPath.row]
-                betEventSummary.createdBet = selectedBet
-            }
-        }
     }
-    
+    */
 
 }

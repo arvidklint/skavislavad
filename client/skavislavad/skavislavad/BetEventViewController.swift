@@ -17,11 +17,15 @@ class BetEventViewController: UIViewController {
     @IBOutlet weak var betStatus: UILabel!
     @IBOutlet weak var yesButton: UIButton!
     @IBOutlet weak var noButton: UIButton!
+    @IBOutlet weak var votedYes: UILabel!
+    @IBOutlet weak var votedNo: UILabel!
+    @IBOutlet weak var betAmount: UILabel!
     
     let username = NSUserDefaults.standardUserDefaults().stringForKey("username")
     
     var bet: BetEvent?
-
+    let v = BetEventViewController!.self
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,12 +34,26 @@ class BetEventViewController: UIViewController {
         betTitle.text = bet?.title;
         betDescription.text = bet?.desc;
         
+        betAmount.text = String(bet!.betAmount!)
         yesButton.enabled = false
         noButton.enabled = false
         self.betStatus.text = "Laddar status..."
+        print(bet?.betAmount!)
         
         
+        Alamofire.request(.GET, "http://localhost:3000/api/betevent/id/\(bet!.id)").responseJSON { response in
+            let json = JSON(response.result.value!)
+
+            let yesVoters = json["yesVoters"].count
+            let noVoters = json["noVoters"].count
+            print("antal jasägare: \(yesVoters)")
+            print("antal nejsägare: \(noVoters)")
+            self.votedYes.text = String(yesVoters)
+            self.votedNo.text = String(noVoters)
         
+            
+            
+        }
         
         
         
@@ -49,8 +67,10 @@ class BetEventViewController: UIViewController {
                 self.noButton.enabled = false
                 if json["value"][0]["type"].stringValue == "yes" {
                     self.betStatus.text = "Du tror på den här vadslagningen"
+                    self.noButton.alpha = 0.5
                 } else {
                     self.betStatus.text = "Du tror inte på den här vadslagningen"
+                    self.yesButton.alpha = 0.5
                 }
             } else if json["status"].intValue == 0 {
                 print("Fritt fram")
@@ -72,6 +92,7 @@ class BetEventViewController: UIViewController {
         
         yesButton.enabled = false
         noButton.enabled = false
+        noButton.alpha = 0.5
         
         let parameters = [
             "userName": username!,
@@ -98,6 +119,7 @@ class BetEventViewController: UIViewController {
     @IBAction func no(sender: UIButton) {
         yesButton.enabled = false
         noButton.enabled = false
+        yesButton.alpha = 0.5
         
         let parameters = [
             "userName": username!,
@@ -119,7 +141,6 @@ class BetEventViewController: UIViewController {
                 self.noButton.enabled = true
             }
         }
-
     }
     
     // MARK: util
