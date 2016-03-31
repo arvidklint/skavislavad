@@ -31,17 +31,27 @@ class ProfileAllBetEventsTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        playedBets = [BetEvent]()
+        
         Alamofire.request(.GET, "http://localhost:3000/api/placedbets/\(username!)").responseJSON { response in
             let json = JSON(response.result.value!)
             print(json)
             
-            for index in 0..<json.count {
-                self.playedBets.append(BetEvent(json: json[index])!)
+            if (json["status"] == 1) {
+                for index in 0..<json["value"].count {
+                    self.playedBets.append(BetEvent(json: json["value"][index])!)
+                }
+                self.tableview.reloadData()
+            } else {
+                print(json["message"])
             }
-            self.tableview.reloadData()
         }
-        
-
     }
 
     override func didReceiveMemoryWarning() {

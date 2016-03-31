@@ -18,6 +18,9 @@ class BetEvent {
     var betAmount: Int?
     var username: String
     var id: String
+    var finished: Bool
+    var totalBetters: Int
+    var result: String
     
     init?(json: JSON) {
         self.title = json["betName"].stringValue
@@ -25,6 +28,9 @@ class BetEvent {
         self.betAmount = json["betAmount"].intValue
         self.username = json["userName"].stringValue
         self.id = json["_id"].stringValue
+        self.finished = json["finished"].boolValue
+        self.totalBetters = json["totalBetters"].intValue
+        self.result = json["result"].stringValue
         
         if (title.isEmpty || username.isEmpty) {
             //|| id.isEmpty) {

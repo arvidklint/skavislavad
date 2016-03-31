@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import SwiftyJSON
 
 class BetEventSummaryViewController: UIViewController {
     
@@ -36,13 +37,20 @@ class BetEventSummaryViewController: UIViewController {
             print("Bet \(self.summaryTitle) has ended.")
             print("The outcome was successful.")
         }*/
-        successfulButton.hidden = true
-        unsuccessfulButton.hidden = true
-        resultTitle.hidden = false
-        resultPreLabel.hidden = false
-        resultPostLabel.hidden = false
-        resultPostLabel.text = "lyckades!"
         
+        let parameters = [
+            "betId": createdBet!.id,
+            "result": "yes"
+        ]
+        
+        Alamofire.request(.PUT, "http://localhost:3000/api/finishedbets", parameters: parameters).responseJSON { response in
+            let json = JSON(response.result.value!)
+            if (json["status"].intValue == 0) {
+                print("Fail")
+            }
+        }
+        betEventFinished()
+        resultPostLabel.text = "lyckades!"
     }
     
     @IBAction func betUnsuccessful(sender: AnyObject) {
@@ -51,31 +59,59 @@ class BetEventSummaryViewController: UIViewController {
             print("Bet \(self.summaryTitle) has ended.")
             print("The outcome was unsuccessful.")
         }*/
+        
+        let parameters = [
+            "betId": createdBet!.id,
+            "result": "no"
+        ]
+        
+        Alamofire.request(.PUT, "http://localhost:3000/api/finishedbets", parameters: parameters).responseJSON { response in
+            let json = JSON(response.result.value!)
+            if (json["status"].intValue == 0) {
+                print("Fail")
+            }
+        }
+        betEventFinished()
+        resultPostLabel.text = "misslyckades!"
+    }
+    
+    func betEventFinished() {
         successfulButton.hidden = true
         unsuccessfulButton.hidden = true
         resultTitle.hidden = false
         resultPreLabel.hidden = false
         resultPostLabel.hidden = false
-        resultPostLabel.text = "misslyckades!"
+        if (createdBet!.result == "yes") {
+            resultPostLabel.text = "lyckades"
+        } else if (createdBet!.result == "no") {
+            resultPostLabel.text = "misslyckades"
+        }
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        resultTitle.hidden = true
-        resultPreLabel.hidden = true
-        resultPostLabel.hidden = true
+
+        // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if (createdBet!.finished == true) {
+            betEventFinished()
+        } else {
+            resultTitle.hidden = true
+            resultPreLabel.hidden = true
+            resultPostLabel.hidden = true
+        }
+        
         summaryTitle.text = createdBet!.title
         summaryDesc.text = createdBet!.desc
         summaryAmount.text = String(createdBet!.betAmount!)
-        
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 

@@ -150,6 +150,20 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		FE257E9D1CAD639800742DC5 /* ProfileControllers */ = {
+			isa = PBXGroup;
+			children = (
+				203828BB1CABD6EC00778AFF /* ProfileAddFriendTableViewCell.swift */,
+				203828B71CABCF7A00778AFF /* ProfileFriendTableViewCell.swift */,
+				20D6F4081CA44DA00081D247 /* ProfileCreatedBetEventsTableViewController.swift */,
+				20D6F3FA1CA2CD040081D247 /* ProfileViewController.swift */,
+				203828B51CABCF2E00778AFF /* ProfileFriendTableViewController.swift */,
+				203828B91CABD44700778AFF /* ProfileAddFriendTableViewController.swift */,
+				20D6F4061CA44CC70081D247 /* ProfileAllBetEventsTableViewController.swift */,
+			);
+			name = ProfileControllers;
+			sourceTree = "<group>";
+		};
 		FE330FF11C9EB5F800F8188A = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +193,7 @@
 				FE330FFF1C9EB5F800F8188A /* BearViewController.swift */,
 				FE3310011C9EB5F800F8188A /* Main.storyboard */,
 				20D6F40A1CA4974F0081D247 /* ProfileCreatedBetEventsTableViewCell.swift */,
+				203828B11CA9D64900778AFF /* ProfileAllBetEventsTableViewCell.swift */,
 				FECE7B3E1CA6A66100E1EE9C /* Controllers */,
 				FECE7B3D1CA6A62D00E1EE9C /* Models */,
 				FE430ED51CA1788C009282AC /* BetFeedTableViewCell.swift */,
@@ -225,20 +240,13 @@
 		FECE7B3E1CA6A66100E1EE9C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				203828BB1CABD6EC00778AFF /* ProfileAddFriendTableViewCell.swift */,
-				203828B71CABCF7A00778AFF /* ProfileFriendTableViewCell.swift */,
+				FE257E9D1CAD639800742DC5 /* ProfileControllers */,
 				203828B31CAA75BE00778AFF /* BetEventSummaryViewController.swift */,
-				203828B11CA9D64900778AFF /* ProfileAllBetEventsTableViewCell.swift */,
 				FECE7B451CA6E20200E1EE9C /* LoginViewController.swift */,
 				FECE7B371CA6A45F00E1EE9C /* NewBetEventViewController.swift */,
-				20D6F4081CA44DA00081D247 /* ProfileCreatedBetEventsTableViewController.swift */,
-				20D6F3FA1CA2CD040081D247 /* ProfileViewController.swift */,
 				20D6F3F61CA2BE6E0081D247 /* BalanceViewController.swift */,
 				FECE7B391CA6A47B00E1EE9C /* BetFeedTableViewController.swift */,
 				FECE7B431CA6AA0600E1EE9C /* BetEventViewController.swift */,
-				20D6F4061CA44CC70081D247 /* ProfileAllBetEventsTableViewController.swift */,
-				203828B51CABCF2E00778AFF /* ProfileFriendTableViewController.swift */,
-				203828B91CABD44700778AFF /* ProfileAddFriendTableViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";

@@ -25,26 +25,28 @@ class BetFeedTableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
-        Alamofire.request(.GET, "http://localhost:3000/api/betevent").responseJSON { response in
+        betEvents = [BetEvent]()
+        
+        Alamofire.request(.GET, "http://localhost:3000/api/betevent/unfinished").responseJSON { response in
             
             let json = JSON(response.result.value!)
-            //print(json)
-            for index in 0..<json.count {
-                self.betEvents.append(BetEvent(json: json[index])!)
+            print(json)
+            for index in 0..<json["value"].count {
+                self.betEvents.append(BetEvent(json: json["value"][index])!)
             }
             self.yesVotersArray = [Int](count: self.betEvents.count, repeatedValue:0)
             self.noVotersArray = [Int](count: self.betEvents.count, repeatedValue:0)
             for i in 0..<self.betEvents.count {
-                Alamofire.request(.GET, "http://localhost:3000/api/betevent/id/\(self.betEvents[i].id)").responseJSON { response in
+                Alamofire.request(.GET, "http://localhost:3000/api/betevent/votes/\(self.betEvents[i].id)").responseJSON { response in
+                    print(response.result.value)
                     let json = JSON(response.result.value!)
-                    print("index: \(i)")
-                    print(self.betEvents[i].title)
-                    //print(json)
-                    let yesVoters = json["yesVoters"].count
-                    let noVoters = json["noVoters"].count
-                    print(yesVoters)
-                    print(noVoters)
+                    let yesVoters = json["value"]["yesVoters"].count
+                    let noVoters = json["value"]["noVoters"].count
                     self.yesVotersArray[i] = yesVoters
                     self.noVotersArray[i] = noVoters
                     
@@ -52,6 +54,7 @@ class BetFeedTableViewController: UITableViewController {
                 }
             }
         }
+
     }
 
     override func didReceiveMemoryWarning() {

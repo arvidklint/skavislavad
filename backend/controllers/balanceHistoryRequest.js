@@ -1,4 +1,4 @@
-var BetEvent = require('../models/placedbets');
+var BalanceHistory = require('../models/balancehistory');
 var r = require('../response.js');
 
 module.exports.post = function(req, res) {
@@ -6,6 +6,7 @@ module.exports.post = function(req, res) {
 
     if (!req.body.userName) {
         res.json(r.error("userName is not defined"));
+        return;
     }
 
     balancehistory.userName = req.body.userName;
@@ -16,7 +17,7 @@ module.exports.post = function(req, res) {
     // save the bear and check for errors
     balancehistory.save(function(err) {
         if (err){
-            res.jsone(r.error(err));
+            res.json(r.error(err));
         }
         res.json(r.post('Your balance history!'));
     });
@@ -32,7 +33,7 @@ module.exports.get = function(req, res) {
 };
 
 module.exports.getBalanceHistoryByUserName = function(userName, res) {
-    BalanceHistory.find({ userName: req.params.userName }, function(err, balancehistories) {
+    BalanceHistory.find({ "userName": userName }, function(err, balancehistories) {
         if (err){
             res.json(r.error(err));
         }

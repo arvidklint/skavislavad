@@ -17,6 +17,8 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var currentBalance: UILabel!
     
     @IBOutlet weak var addBalanceField: UITextField!
+    
+    let username = NSUserDefaults.standardUserDefaults().stringForKey("username")
 
     
     @IBAction func addBalanceButton(sender: AnyObject) {
@@ -27,31 +29,33 @@ class ProfileViewController: UIViewController {
             currentBalance.text = String(newbalance)
             
             // UPPDATERAR SALDO
-            Alamofire.request(.PUT, "http://localhost:3000/api/user/Emil", parameters : ["balance" : Int(inputBalance)!]).response { (request, response, data, error) in
+            Alamofire.request(.PUT, "http://localhost:3000/api/updatebalance", parameters : ["balance" : Int(inputBalance)!, "userName": username!]).response { (request, response, data, error) in
                 print("User balance has been updated.")
                 print("New balance is: \(newbalance)")
             }
             addBalanceField.text = ""
         }
-
-        
     }
-
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         
         if let username = NSUserDefaults.standardUserDefaults().stringForKey("username") {
-                Alamofire.request(.GET, "http://localhost:3000/api/user/\(username)").responseJSON { response in
-            
+            Alamofire.request(.GET, "http://localhost:3000/api/user/\(username)").responseJSON { response in
+                
                 let json = JSON(response.result.value!)
-                let user = ProfileUser(json: json)
+                let user = ProfileUser(json: json["value"])
                 self.currentBalance.text = String(user.balance)
                 self.profileName.text = user.username
             }
         } else {
             showMessage("Varning", message: "Hittade inte användaren")
         }
+    }
+
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         

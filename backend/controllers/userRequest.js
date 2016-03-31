@@ -1,4 +1,5 @@
 var User = require('../models/user');
+var BalanceHistory = require('../models/balancehistory')
 var r = require('../response.js');
 
 module.exports.post = function(req, res) {
@@ -34,7 +35,7 @@ module.exports.get = function(req, res) {
 }
 
 module.exports.getUser = function(userName, res) {
-  User.findOne({ userName: userName }, function(err, user) {
+  User.findOne({ "userName": userName }, function(err, user) {
       if (err){
           res.json(r.error(err));
       }
@@ -42,13 +43,14 @@ module.exports.getUser = function(userName, res) {
   });
 }
 
-module.exports.putUser = function(userName, res) {
+module.exports.putUser = function(userName, balance, res) {
   // use our user model to find the user we want
-  User.findOne({ userName : req.params.userName }, function(err, user) {
+  User.findOne({ "userName": userName }, function(err, user) {
       if (err){
-          res.send(err);
+          res.json(r.error(err));
       }
-      user.userName = userName;
+      console.log(user);
+      user.balance += parseInt(balance);
       // save the user
       user.save(function(err) {
           if (err){
@@ -59,7 +61,7 @@ module.exports.putUser = function(userName, res) {
           var balancehistory = new BalanceHistory({
               userName : user.userName,
               newBalance : user.balance,
-              changedAmount : req.body.balance
+              changedAmount : parseInt(balance)
           });
 
           balancehistory.save(function(err){
@@ -80,5 +82,39 @@ module.exports.deleteUser = function(userName, res) {
             res.json(r.error(err));
         }
         res.json(r.delete('Successfully deleted user'));
+    });
+};
+
+module.exports.updateBalance = function(userName, balance, res) {
+    User.findOne({"userName": userName}, function(err, user) {
+        if (err) {
+            res.json(r.error(err));
+        }
+        console.log(balance);
+        user.balance = user.balance + parseInt(balance);
+        console.log(user.balance);
+
+        user.save(function(err) {
+            if (err) {
+                res.json(r.error(err));
+            } else {
+                // Create a new BalanceHistory instance with username, new balance, and the change, and saves it.
+                var balancehistory = new BalanceHistory({
+                    userName : user.userName,
+                    newBalance : user.balance,
+                    changedAmount : parseInt(balance)
+                });
+
+                balancehistory.save(function(err){
+                    if(err){
+                        res.json(r.error(err));
+                    } else {
+                        res.json(r.put("Success"));
+                    }
+                });
+            }
+        });
+
+
     });
 }

@@ -13,6 +13,8 @@ class ProfileCreatedBetEventsTableViewCell: UITableViewCell {
     @IBOutlet weak var createdBetAmount: UILabel!
     @IBOutlet weak var createdBetParticipants: UILabel!
     
+    @IBOutlet weak var ongoingBetLabel: UILabel!
+    @IBOutlet weak var finishedBetLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

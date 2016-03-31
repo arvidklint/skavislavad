@@ -1,4 +1,5 @@
-var BetEvent = require('../models/placedbets');
+var PlacedBets = require('../models/placedbets');
+var BetEvent = require('../models/betevent');
 var r = require('../response.js');
 
 module.exports.post = function(req, res) {
@@ -24,7 +25,7 @@ module.exports.post = function(req, res) {
 module.exports.get = function(req, res) {
     var userName = req.query.userName;
     var betId = req.query.betId;
-    if (!userName && !betId) {
+    if (userName && betId) {
       PlacedBets.find({"userName": userName, "betId": betId}, function(err, placedbets) {
         if (err){
           res.json(r.error(err));
@@ -40,7 +41,7 @@ module.exports.get = function(req, res) {
         if (err) {
           res.json(r.error(err));
         }
-        res.json(r.get(placebets));
+        res.json(r.get(placedbets));
       });
     }
 };
@@ -65,6 +66,7 @@ module.exports.getPlacedBetsByUserName = function(userName, res) {
                     betName : betevents[i].betName,
                     userName : betevents[i].userName,
                     _id : betevents[i]["_id"],
+                    finished : betevents[i].finished,
                     whatYouGuessed : placedbets[i].type
                 };
                 reformBetEvents.push(reformedObj);
@@ -76,7 +78,7 @@ module.exports.getPlacedBetsByUserName = function(userName, res) {
 
 
 module.exports.getVotes = function(betId, res) {
-    PlacedBets.find({betId : betId}, function(err, placedbets){
+    PlacedBets.find({"betId": betId}, function(err, placedbets){
         if (err){
             res.json(r.error(err));
         }
@@ -93,11 +95,11 @@ module.exports.getVotes = function(betId, res) {
             }
         }
 
-        var message = {
+        var value = {
             "yesVoters": yesVoterArray,
             "noVoters": noVoterArray
         };
 
-        res.json(r.get(message));
+        res.json(r.get(value));
     });
 };

@@ -28,6 +28,8 @@ class Balance{
             dateFormatter.dateStyle = NSDateFormatterStyle.ShortStyle
             dateFormatter.timeStyle = .ShortStyle
             
+            print("Datum: ", date)
+            
             let formattedDate = String(dateFormatter.stringFromDate(date!))
             
             return formattedDate

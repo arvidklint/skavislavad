@@ -1,5 +1,7 @@
 var BetEvent = require('../models/betevent');
 var r = require('../response.js');
+var PlacedBets = require('../models/placedbets');
+var User = require('../models/user');
 
 module.exports.post = function(req, res) {
     var betevent = new BetEvent();      // create a new instance of the betevent model
@@ -34,6 +36,16 @@ module.exports.get = function(req, res) {
     });
 };
 
+module.exports.getUnfinished = function(req, res) {
+    BetEvent.find({"finished": false}, function(err, betevent) {
+        if (err){
+            res.json(r.error(err));
+        }
+        console.log(betevent);
+        res.json(r.get(betevent));
+    });
+};
+
 module.exports.getBetEventById = function(id, res) {
     BetEvent.findById(id, function(err, betevent) {
         if (err){
@@ -62,7 +74,7 @@ module.exports.putBetEventById = function(id, res) {
     });
 };
 
-module.exports.getBeteEventsByUser = function(userName, res) {
+module.exports.getBetEventsByUser = function(userName, res) {
     BetEvent.find({ userName: userName }, function(err, betevents) {
         if (err){
             res.json(r.error(err));
@@ -70,3 +82,77 @@ module.exports.getBeteEventsByUser = function(userName, res) {
         res.json(r.get(betevents));
     });
 };
+
+module.exports.finishBetEvent = function(betId, result, res) {
+    BetEvent.findById(betId, function(err, betevent){
+        if (err){
+            res.json(r.error(err));
+        }
+        betevent.finished = true;
+        betevent.result = result;
+        var betAmount = betevent.betAmount;
+        betevent.save(function(err){
+            if (err){
+                res.json(r.error(err));
+            }
+
+            PlacedBets.find({ betId: betId}, function(err, placedbets){
+                if(err){
+                    res.json(r.error(err));
+                }
+
+                var numberOfBetters = placedbets.length;
+                var totalAmount = numberOfBetters * betAmount;
+
+                console.log(placedbets);
+
+                var yesBetters = 0;
+                var noBetters = 0;
+                for (var i = 0; i < placedbets.length; i++) {
+                    console.log(placedbets[i].type);
+                    if (placedbets[i].type == "no") {
+                        noBetters++;
+                    } else {
+                        yesBetters++;
+                    }
+                }
+
+                console.log(yesBetters, noBetters);
+
+                if (result === "yes") {
+                    var winAmount = totalAmount / yesBetters;
+                } else if (result === "no") {
+                    var winAmount = totalAmount / noBetters;
+                }
+
+                console.log("WinAmount: " + winAmount);
+
+                for (var i = 0; i < placedbets.length; i++) {
+                    var doit = (function() {
+                        var b = placedbets[i];
+                        var r = result;
+                        var w = winAmount;
+                        console.log(b, r, w);
+                        return function() {
+                            User.findOne({"userName": b.userName}, function(err, user) {
+                                if (b.type == r) {
+                                    console.log(w);
+                                    user.balance += w;
+
+                                    user.save(function(err) {
+                                        if (err) {
+                                            console.log(err);
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    })();
+                    doit();
+                }
+
+                res.json(r.put("Success"));
+            })
+        });
+    })
+}

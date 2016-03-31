@@ -29,15 +29,28 @@ class ProfileCreatedBetEventsTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
+        
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        createdBetEvents = [BetEvent]()
+        
         Alamofire.request(.GET, "http://localhost:3000/api/betevent/\(username!)").responseJSON { response in
             
             let json = JSON(response.result.value!)
-            print("Profile Bet events controller - Antal skapade bets: \(json.count)")
-            for index in 0..<json.count {
-                self.createdBetEvents.append(BetEvent(json: json[index])!)
+            if (json["status"].intValue == 1) {
+                print("Profile Bet events controller - Antal skapade bets: \(json["value"].count)")
+                for index in 0..<json["value"].count {
+                    self.createdBetEvents.append(BetEvent(json: json["value"][index])!)
+                }
+                
+                self.tableview.reloadData()
+            } else {
+                print(json["message"])
             }
             
-            self.tableview.reloadData()
         }
     }
 
@@ -63,9 +76,15 @@ class ProfileCreatedBetEventsTableViewController: UITableViewController {
         
         let betEvent = createdBetEvents[indexPath.row]
 
+        cell.ongoingBetLabel.hidden = true
+        cell.finishedBetLabel.hidden = true
         cell.createdBetAmount.text = String(betEvent.betAmount!)
         cell.createdBetName.text = betEvent.title
-        cell.createdBetParticipants.text = "0"
+        if (betEvent.finished) {
+            cell.finishedBetLabel.hidden = false
+        } else {
+            cell.ongoingBetLabel.hidden = false
+        }
         
         return cell
     }

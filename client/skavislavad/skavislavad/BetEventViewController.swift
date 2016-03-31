@@ -41,18 +41,15 @@ class BetEventViewController: UIViewController {
         print(bet?.betAmount!)
         
         
-        Alamofire.request(.GET, "http://localhost:3000/api/betevent/id/\(bet!.id)").responseJSON { response in
+        Alamofire.request(.GET, "http://localhost:3000/api/betevent/votes/\(bet!.id)").responseJSON { response in
             let json = JSON(response.result.value!)
 
-            let yesVoters = json["yesVoters"].count
-            let noVoters = json["noVoters"].count
+            let yesVoters = json["value"]["yesVoters"].count
+            let noVoters = json["value"]["noVoters"].count
             print("antal jasägare: \(yesVoters)")
             print("antal nejsägare: \(noVoters)")
             self.votedYes.text = String(yesVoters)
             self.votedNo.text = String(noVoters)
-        
-            
-            
         }
         
         
@@ -60,7 +57,6 @@ class BetEventViewController: UIViewController {
         // Check if already placed a bet.
         Alamofire.request(.GET, "http://localhost:3000/api/placedbets?userName=\(username!)&betId=\(bet!.id)").responseJSON { response in
             let json = JSON(response.result.value!)
-            print(json)
             
             if json["status"].intValue == 1 {
                 self.yesButton.enabled = false
@@ -73,7 +69,6 @@ class BetEventViewController: UIViewController {
                     self.yesButton.alpha = 0.5
                 }
             } else if json["status"].intValue == 0 {
-                print("Fritt fram")
                 self.betStatus.text = "Vad tror du?"
                 self.yesButton.enabled = true
                 self.noButton.enabled = true
@@ -94,17 +89,33 @@ class BetEventViewController: UIViewController {
         noButton.enabled = false
         noButton.alpha = 0.5
         
+        votedYes.text = String(Int(votedYes.text!)! + 1)
+        
         let parameters = [
             "userName": username!,
             "betId": bet!.id,
-            "type": "yes"
+            "type": "yes",
+            "betAmount": betAmount.text!
         ]
         
         Alamofire.request(.POST, "http://localhost:3000/api/placedbets", parameters: parameters).responseJSON { response in
             let json = JSON(response.result.value!)
-            print(json)
             
             if json["status"].intValue == 1 {
+                let parameters = [
+                    "userName": self.username!,
+                    "balance": String(-self.bet!.betAmount!)
+                ]
+                
+                Alamofire.request(.PUT, "http://localhost:3000/api/updatebalance", parameters: parameters).responseJSON { response in
+                    let json = JSON(response.result.value!)
+                    print("Updaterade balansen")
+                    print(json)
+                    if (json["status"].intValue == 0) {
+                        print(json["message"])
+                    }
+                }
+                
                 self.yesButton.enabled = false
                 self.noButton.enabled = false
                 self.betStatus.text = "Du tror på den här vadslagningen"
@@ -114,12 +125,16 @@ class BetEventViewController: UIViewController {
                 self.noButton.enabled = true
             }
         }
+        
+        
     }
     
     @IBAction func no(sender: UIButton) {
         yesButton.enabled = false
         noButton.enabled = false
         yesButton.alpha = 0.5
+        
+        votedNo.text = String(Int(votedNo.text!)! + 1)
         
         let parameters = [
             "userName": username!,
@@ -132,6 +147,20 @@ class BetEventViewController: UIViewController {
             print(json)
             
             if json["status"].intValue == 1 {
+                let parameters = [
+                    "userName": self.username!,
+                    "balance": String(-self.bet!.betAmount!)
+                ]
+                
+                Alamofire.request(.PUT, "http://localhost:3000/api/updatebalance", parameters: parameters).responseJSON { response in
+                    let json = JSON(response.result.value!)
+                    print("Updaterade balansen")
+                    print(json)
+                    if (json["status"].intValue == 0) {
+                        print(json["message"])
+                    }
+                }
+                
                 self.yesButton.enabled = false
                 self.noButton.enabled = false
                 self.betStatus.text = "Du tror inte på den här vadslagningen"

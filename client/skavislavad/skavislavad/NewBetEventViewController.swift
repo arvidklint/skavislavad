@@ -87,16 +87,19 @@ class NewBetEventViewController: UIViewController, UITextFieldDelegate, UITextVi
             .responseJSON { response in
                 // add betevent to return in backend.js
                 let json = JSON(response.result.value!)
-                self.createdBet = BetEvent(json: json["event"])!
-                
-                self.titleInput.text = ""
-                self.descriptionInput.text = ""
-                self.betAmountInput.text = ""
-
+                if (json["status"].intValue == 1) {
+                    print(json)
+                    self.createdBet = BetEvent(json: json["message"])!
+                    
+                    self.titleInput.text = ""
+                    self.descriptionInput.text = ""
+                    self.betAmountInput.text = ""
+                    
+                    
+                }
                 self.dismissViewControllerAnimated(false, completion:{
                     self.performSegueWithIdentifier("summary", sender: self)
                 })
-                // Close the view and go back to the list in some way.
             }
     }
     

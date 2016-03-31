@@ -36,7 +36,7 @@ var router = express.Router();              // get an instance of the express Ro
 // middleware to use for all requests
 router.use(function(req, res, next) {
     // do logging
-    // console.log('Something is happening.');
+    console.log('Something is happening.');
     next(); // make sure we go to the next routes and don't stop here
 });
 
@@ -109,12 +109,17 @@ router.route('/user/:userName')
 
     // update the user with this id (accessed at PUT http://localhost:3000/api/user/:user_id)
     .put(function(req, res) {
-        userRequest.putUser(req.params.userName, res);
+        userRequest.putUser(req.params.userName, req.body.balance, res);
     })
 
     // delete the user with this id (accessed at DELETE http://localhost:3000/api/user/:user_id)
     .delete(function(req, res) {
         userRequest.deleteUser(req.params.userName, res);
+    });
+
+router.route('/updatebalance')
+    .put(function(req, res) {
+        userRequest.updateBalance(req.body.userName, req.body.balance, res);
     });
 
 
@@ -127,6 +132,11 @@ router.route('/betevent')
 
     .get(function(req, res) {
         betEventRequest.get(req, res);
+    });
+
+router.route('/betevent/unfinished')
+    .get(function(req, res) {
+        betEventRequest.getUnfinished(req, res);
     });
 
 
@@ -154,7 +164,7 @@ router.route('/betevent/votes/:betId')
 
 router.route('/betevent/:userName')
     .get(function(req, res){
-        betEventRequest.getUser(req.params.userName, res);
+        betEventRequest.getBetEventsByUser(req.params.userName, res);
     });
 
 
@@ -198,6 +208,12 @@ router.route('/register')
     .post(function(req, res) {
         registerRequest.post(req, res);
     });
+
+router.route('/finishedbets')
+    .put(function(req, res){
+        betEventRequest.finishBetEvent(req.body.betId, req.body.result, res);
+    });
+
 
 
 // all of our routes will be prefixed with /api

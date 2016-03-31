@@ -33,8 +33,10 @@ class BalanceViewController: UITableViewController {
         Alamofire.request(.GET, "http://localhost:3000/api/balancehistory/\(username!)").responseJSON { response in
             
             let json = JSON(response.result.value!)
-            for index in 0..<json.count {
-                self.balanceHistories.append(Balance(json: json[index]))
+            print(json)
+            for index in 0..<json["value"].count {
+                
+                self.balanceHistories.append(Balance(json: json["value"][index]))
             }
             
             self.tableview.reloadData()
