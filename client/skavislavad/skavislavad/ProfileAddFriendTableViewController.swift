@@ -7,17 +7,35 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class ProfileAddFriendTableViewController: UITableViewController, UISearchResultsUpdating {
 
-    
-    let tableData = ["One","Two","Three","Twenty-One"]
-    var filteredTableData = [String]()
+//    var allUsers = [ProfileUser]()
+    var allUsers = [String]()
+//    let tableData = ["One","Two","Three","Twenty-One"]
+    var filteredUsers = [String]()
     var resultSearchController = UISearchController()
-    
+    let username = NSUserDefaults.standardUserDefaults().stringForKey("username")
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Alamofire.request(.GET, "http://localhost:3000/api/getFoes/\(username!)").responseJSON { response in
+            let json = JSON(response.result.value!)
+            print(json)
+            if (json["status"] == 1) {
+                for index in 0..<json["value"].count {
+                    // self.allUsers.append(ProfileUser(json: json["value"][index]))
+                    self.allUsers.append(json["value"][index].stringValue)
+                }
+            }
+            else {
+                print(json["message"])
+            }
+            self.tableView.reloadData()
+        }
         
         self.resultSearchController = ({
             let controller = UISearchController(searchResultsController: nil)
@@ -55,10 +73,10 @@ class ProfileAddFriendTableViewController: UITableViewController, UISearchResult
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         if (self.resultSearchController.active) {
-            return self.filteredTableData.count
+            return self.filteredUsers.count
         }
         else {
-            return self.tableData.count
+            return self.allUsers.count
         }
     }
 
@@ -68,25 +86,72 @@ class ProfileAddFriendTableViewController: UITableViewController, UISearchResult
         
         // 3
         if (self.resultSearchController.active) {
-            cell.textLabel?.text = filteredTableData[indexPath.row]
+            cell.textLabel?.text = filteredUsers[indexPath.row]
             
             return cell
         }
         else {
-            cell.textLabel?.text = tableData[indexPath.row]
+            cell.textLabel?.text = allUsers[indexPath.row]
             
             return cell
+        }
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        if (self.resultSearchController.active) {
+            dismissViewControllerAnimated(false, completion: nil)
+
+            print(filteredUsers[indexPath.row])
+            let refreshAlert = UIAlertController(title: "Lägg till kompis", message: "Är du säker på att du vill ha \(allUsers[indexPath.row]) som kompis?", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            refreshAlert.addAction(UIAlertAction(title: "Ja", style: .Default, handler: { (action: UIAlertAction!) in
+                Alamofire.request(.PUT, "http://localhost:3000/api/addFriend", parameters : ["userName": self.username!, "friendName": self.allUsers[indexPath.row]]).responseJSON { response in
+                    let json = JSON(response.result.value!)
+                    print(json)
+                }
+            }))
+            
+            refreshAlert.addAction(UIAlertAction(title: "Avbryt", style: .Default, handler: { (action: UIAlertAction!) in
+                print("Handle Cancel Logic here")
+            }))
+            
+            presentViewController(refreshAlert, animated: true, completion: nil)
+            
+        }
+        else {
+            print(allUsers[indexPath.row])
+            
+            let refreshAlert = UIAlertController(title: "Lägg till kompis", message: "Är du säker på att du vill ha \(allUsers[indexPath.row]) som kompis?", preferredStyle: UIAlertControllerStyle.Alert)
+            
+            refreshAlert.addAction(UIAlertAction(title: "Ja", style: .Default, handler: { (action: UIAlertAction!) in
+                Alamofire.request(.PUT, "http://localhost:3000/api/addFriend", parameters : ["userName": self.username!, "friendName": self.allUsers[indexPath.row]]).responseJSON { response in
+                    let json = JSON(response.result.value!)
+                    if(json["status"].intValue == 0){
+                        print(json["message"].stringValue)
+                    }
+                    self.allUsers.removeAtIndex(indexPath.row)
+                    self.tableView.reloadData()
+                }
+            }))
+            
+            refreshAlert.addAction(UIAlertAction(title: "Avbryt", style: .Default, handler: { (action: UIAlertAction!) in
+                print("Handle Cancel Logic here")
+            }))
+            
+            presentViewController(refreshAlert, animated: true, completion: nil)
         }
     }
     
     
     func updateSearchResultsForSearchController(searchController: UISearchController)
     {
-        filteredTableData.removeAll(keepCapacity: false)
+        filteredUsers.removeAll(keepCapacity: false)
         
         let searchPredicate = NSPredicate(format: "SELF CONTAINS[c] %@", searchController.searchBar.text!)
-        let array = (tableData as NSArray).filteredArrayUsingPredicate(searchPredicate)
-        filteredTableData = array as! [String]
+        let array = (allUsers as NSArray).filteredArrayUsingPredicate(searchPredicate)
+        filteredUsers = array as! [String]
         
         self.tableView.reloadData()
     }

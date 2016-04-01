@@ -4,9 +4,9 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
 // <<<<<<< UNCOMMENT WHEN WORKING LOCAL! >>>>>>>
-mongoose.connect('mongodb://localhost:27017/test');
+// mongoose.connect('mongodb://localhost:27017/test');
 
-// mongoose.connect('mongodb://projekt:projekt@ds021969.mlab.com:21969/internetprogrammering16'); // anv: projekt, pw: projekt
+mongoose.connect('mongodb://projekt:projekt@ds021969.mlab.com:21969/internetprogrammering16'); // anv: projekt, pw: projekt
 
 
 var Bear = require('./models/bear');
@@ -120,6 +120,26 @@ router.route('/user/:userName')
 router.route('/updatebalance')
     .put(function(req, res) {
         userRequest.updateBalance(req.body.userName, req.body.balance, res);
+    });
+
+router.route('/addfriend')
+    .put(function(req, res){
+        userRequest.addFriend(req.body.userName, req.body.friendName, res);
+    });
+
+router.route('/deleteFriend')
+    .put(function(req, res){
+        userRequest.deleteFriend(req.body.userName, req.body.friendName, res);
+    });
+
+router.route('/getFoes/:userName')
+    .get(function(req, res){
+        userRequest.getFoes(req.params.userName, res);
+    });
+
+router.route('/getFriends/:userName')
+    .get(function(req, res){
+        userRequest.getFriends(req.params.userName, res);
     });
 
 

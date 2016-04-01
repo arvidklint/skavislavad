@@ -77,7 +77,7 @@ module.exports.putUser = function(userName, balance, res) {
 }
 
 module.exports.deleteUser = function(userName, res) {
-    User.findOneAndRemove({ userName: req.params.userName  }, function(err, user) {
+    User.findOneAndRemove({ userName: userName  }, function(err, user) {
         if (err){
             res.json(r.error(err));
         }
@@ -117,4 +117,78 @@ module.exports.updateBalance = function(userName, balance, res) {
 
 
     });
-}
+};
+
+module.exports.addFriend = function(userName, friendName, res) {
+  User.findOne({"userName": userName}, function(err, user) {
+    if (err) {
+      res.json(r.error(err));
+    }
+
+    user.friends.push(friendName);
+
+    user.save(function(err) {
+      if (err) {
+          res.json(r.error(err));
+      } else {
+        res.json(r.put("Success"));
+      }
+    });
+  });
+};
+
+module.exports.deleteFriend = function(userName, friendName, res) {
+  console.log("username: " + userName);
+  console.log("friend: " + friendName);
+  User.findOne({"userName": userName}, function(err, user){
+    if (err) {
+      res.json(r.error(err));
+    }
+    console.log(user);
+    if(user.friends.indexOf(friendName) > -1) {
+      user.friends.splice(user.friends.indexOf(friendName), 1);
+    }
+
+    user.save(function(err){
+      if (err) {
+        res.json(r.error(err));
+      }
+
+      res.json(r.delete('Successfully deleted friend'));      
+    });
+  });
+};
+
+module.exports.getFoes = function(userName, res) {
+
+  User.findOne({"userName": userName}, function(err, user) {
+    if (err) {
+      res.json(r.error(err));
+    }
+
+    User.find(function(err, users){
+      if (err) {
+        res.json(r.error(err));
+      }
+
+      var returnArray = [];
+      for(var index in users){
+        if( (user.friends.indexOf(users[index].userName) <= -1) && users[index].userName !== userName){
+          returnArray.push(users[index].userName);
+        }
+      }
+
+      res.json(r.get(returnArray));
+    });
+  });
+};
+
+module.exports.getFriends = function(userName, res){
+  User.findOne({"userName": userName}, function(err, user){
+    if (err) {
+      res.json(r.error(err));
+    }
+
+    res.json(r.get(user.friends));
+  });
+};
