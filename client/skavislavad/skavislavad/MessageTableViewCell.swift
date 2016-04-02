@@ -1,18 +1,18 @@
 //
-//  ProfileMessagesTableViewCell.swift
+//  MessageTableViewCell.swift
 //  skavislavad
 //
-//  Created by Arvid Sätterkvist on 01/04/16.
+//  Created by Arvid Sätterkvist on 02/04/16.
 //  Copyright © 2016 arvidsat. All rights reserved.
 //
 
 import UIKit
 
-class ProfileMessagesTableViewCell: UITableViewCell {
-    
+class MessageTableViewCell: UITableViewCell {
+
     @IBOutlet weak var usernameLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var messageLabel: UILabel!
+    
+    @IBOutlet weak var message: UITextView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
