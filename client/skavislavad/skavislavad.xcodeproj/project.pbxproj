@@ -32,6 +32,10 @@
 		FE3310131C9EB5F800F8188A /* skavislavadTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE3310121C9EB5F800F8188A /* skavislavadTests.swift */; };
 		FE33101E1C9EB5F800F8188A /* skavislavadUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE33101D1C9EB5F800F8188A /* skavislavadUITests.swift */; };
 		FE33102C1C9EDC2500F8188A /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE33102B1C9EDC2500F8188A /* RatingControl.swift */; };
+		FE4178D01CAFCB7700C28102 /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4178CF1CAFCB7700C28102 /* ChatRoom.swift */; };
+		FE4178D21CAFD90C00C28102 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4178D11CAFD90C00C28102 /* Message.swift */; };
+		FE4178D61CAFDBC200C28102 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4178D51CAFDBC200C28102 /* MessageTableViewCell.swift */; };
+		FE4178D81CAFE69900C28102 /* ChatRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4178D71CAFE69900C28102 /* ChatRoomViewController.swift */; };
 		FE430ED61CA1788C009282AC /* BetFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE430ED51CA1788C009282AC /* BetFeedTableViewCell.swift */; };
 		FE8EAA501C9EE7E000C1800C /* Bear.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8EAA4F1C9EE7E000C1800C /* Bear.swift */; };
 		FE8EAA511C9EE7E000C1800C /* Bear.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8EAA4F1C9EE7E000C1800C /* Bear.swift */; };
@@ -102,6 +106,10 @@
 		FE33101D1C9EB5F800F8188A /* skavislavadUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skavislavadUITests.swift; sourceTree = "<group>"; };
 		FE33101F1C9EB5F900F8188A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE33102B1C9EDC2500F8188A /* RatingControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
+		FE4178CF1CAFCB7700C28102 /* ChatRoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
+		FE4178D11CAFD90C00C28102 /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		FE4178D51CAFDBC200C28102 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
+		FE4178D71CAFE69900C28102 /* ChatRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatRoomViewController.swift; sourceTree = "<group>"; };
 		FE430ED51CA1788C009282AC /* BetFeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BetFeedTableViewCell.swift; sourceTree = "<group>"; };
 		FE8EAA4F1C9EE7E000C1800C /* Bear.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bear.swift; sourceTree = "<group>"; };
 		FE8EAA531C9EEDBE00C1800C /* BearTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BearTableViewCell.swift; sourceTree = "<group>"; };
@@ -198,9 +206,11 @@
 		FE330FFC1C9EB5F800F8188A /* skavislavad */ = {
 			isa = PBXGroup;
 			children = (
+				FE4178D51CAFDBC200C28102 /* MessageTableViewCell.swift */,
 				FE330FFD1C9EB5F800F8188A /* AppDelegate.swift */,
 				FE330FFF1C9EB5F800F8188A /* BearViewController.swift */,
 				FE3310011C9EB5F800F8188A /* Main.storyboard */,
+				FE4178D11CAFD90C00C28102 /* Message.swift */,
 				FED605FA1CAEB2C20050C4EB /* ProfileMessagesTableViewCell.swift */,
 				20D6F40A1CA4974F0081D247 /* ProfileCreatedBetEventsTableViewCell.swift */,
 				203828B11CA9D64900778AFF /* ProfileAllBetEventsTableViewCell.swift */,
@@ -239,6 +249,7 @@
 		FECE7B3D1CA6A62D00E1EE9C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FE4178CF1CAFCB7700C28102 /* ChatRoom.swift */,
 				FE12FA3D1CAEB52500DC2AFF /* SocketIOManager.swift */,
 				20D6F3FC1CA2D5210081D247 /* ProfileUser.swift */,
 				FECE7B3B1CA6A4B000E1EE9C /* BetEvent.swift */,
@@ -251,6 +262,7 @@
 		FECE7B3E1CA6A66100E1EE9C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				FE4178D71CAFE69900C28102 /* ChatRoomViewController.swift */,
 				FE257E9D1CAD639800742DC5 /* ProfileControllers */,
 				203828B31CAA75BE00778AFF /* BetEventSummaryViewController.swift */,
 				FECE7B451CA6E20200E1EE9C /* LoginViewController.swift */,
@@ -449,9 +461,11 @@
 				FE3310001C9EB5F800F8188A /* BearViewController.swift in Sources */,
 				FE33102C1C9EDC2500F8188A /* RatingControl.swift in Sources */,
 				203828B61CABCF2E00778AFF /* ProfileFriendTableViewController.swift in Sources */,
+				FE4178D61CAFDBC200C28102 /* MessageTableViewCell.swift in Sources */,
 				20D6F4051CA432ED0081D247 /* BalanceTableViewCell.swift in Sources */,
 				FE12FA401CAEC0E700DC2AFF /* MessageViewController.swift in Sources */,
 				FE330FFE1C9EB5F800F8188A /* AppDelegate.swift in Sources */,
+				FE4178D81CAFE69900C28102 /* ChatRoomViewController.swift in Sources */,
 				FED605F91CAEB1520050C4EB /* ProfileMessagesTableViewController.swift in Sources */,
 				FECE7B441CA6AA0600E1EE9C /* BetEventViewController.swift in Sources */,
 				20D6F3FD1CA2D5210081D247 /* ProfileUser.swift in Sources */,
@@ -459,6 +473,7 @@
 				FE8EAA581C9EF63B00C1800C /* BearTableViewController.swift in Sources */,
 				FE8EAA541C9EEDBE00C1800C /* BearTableViewCell.swift in Sources */,
 				FECE7B461CA6E20200E1EE9C /* LoginViewController.swift in Sources */,
+				FE4178D21CAFD90C00C28102 /* Message.swift in Sources */,
 				20D6F4091CA44DA00081D247 /* ProfileCreatedBetEventsTableViewController.swift in Sources */,
 				20D6F40B1CA4974F0081D247 /* ProfileCreatedBetEventsTableViewCell.swift in Sources */,
 				FECE7B3A1CA6A47B00E1EE9C /* BetFeedTableViewController.swift in Sources */,
@@ -473,6 +488,7 @@
 				20D6F4071CA44CC70081D247 /* ProfileAllBetEventsTableViewController.swift in Sources */,
 				203828BA1CABD44700778AFF /* ProfileAddFriendTableViewController.swift in Sources */,
 				FECE7B381CA6A45F00E1EE9C /* NewBetEventViewController.swift in Sources */,
+				FE4178D01CAFCB7700C28102 /* ChatRoom.swift in Sources */,
 				FED605FB1CAEB2C20050C4EB /* ProfileMessagesTableViewCell.swift in Sources */,
 				20D6F3FF1CA422220081D247 /* Balance.swift in Sources */,
 				FE430ED61CA1788C009282AC /* BetFeedTableViewCell.swift in Sources */,
