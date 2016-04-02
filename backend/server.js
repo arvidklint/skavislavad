@@ -274,14 +274,16 @@ io.on('connection', function(clientSocket) {
         };
     });
 
-    clientSocket.on('disconnect', function() {
+    clientSocket.on('disconnectUser', function(username) {
         console.log('user disconnected');
+        delete sockets[users[username]];
+        delete users[username];
     });
 
     clientSocket.on('chatMessage', function(message, roomId){
         var currentDateTime = new Date().toLocaleString();
         var sender = sockets[clientSocket.id].username;
-        console.log("hehe");
+
         var msg =  {
             "date" : currentDateTime,
             "message" : message,
@@ -295,8 +297,10 @@ io.on('connection', function(clientSocket) {
                 console.log("error: " + err);
                 // res.json(r.error(err));
             }
-            for(var member in room.members){
-                sockets[users[room.members[member]]].socket.emit('receiveMessage', msg);
+            console.log(room);
+            for (var member in room[0].members){
+                console.log("sending to " + room[0].members[member]);
+                sockets[users[room[0].members[member]]].socket.emit('receiveMessage', msg);
             }
         });
 

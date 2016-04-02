@@ -115,8 +115,6 @@ class ProfileFriendTableViewController: UITableViewController {
         SocketIOManager.sharedInstance.joinChatRoomWithMembers([username!, friend])
         SocketIOManager.sharedInstance.getRoom { (room) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                
-                print(room)
                 self.toRoom = ChatRoom(members: room["members"] as! [String], roomId: room["roomId"] as! String)
                 self.performSegueWithIdentifier("ShowChatRoomFromFriends", sender: self)
             })

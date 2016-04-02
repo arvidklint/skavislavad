@@ -30,6 +30,10 @@ class SocketIOManager: NSObject {
         socket.emit("connectUser", username)
     }
     
+    func disconnectUser(username: String) {
+        socket.emit("disconnectUser", username)
+    }
+    
 //    func connectToServerWithUsername(username: String, completionHandler: (userList: [[String: AnyObject]]!) -> Void) {
 //        socket.emit("connectUser", username)
 //        
@@ -46,10 +50,9 @@ class SocketIOManager: NSObject {
     func getMessage(completionHandler: (messageInfo: [String: AnyObject]) -> Void) {
         socket.on("receiveMessage") { (dataArray, socketAck) -> Void in
             var messageDictionary = [String: AnyObject]()
-            print(dataArray)
-            messageDictionary["username"] = dataArray[0] as! String
-            messageDictionary["message"] = dataArray[1] as! String
-            messageDictionary["date"] = dataArray[2] as! String
+            messageDictionary["username"] = dataArray[0]["from"] as! String
+            messageDictionary["message"] = dataArray[0]["message"] as! String
+            messageDictionary["date"] = dataArray[0]["date"] as! String
             
             completionHandler(messageInfo: messageDictionary)
         }

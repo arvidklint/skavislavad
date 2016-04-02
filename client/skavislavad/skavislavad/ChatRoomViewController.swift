@@ -35,12 +35,11 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
         Alamofire.request(.GET, "http://localhost:3000/api/getmessages/\(chatRoom!.roomId)").responseJSON { response in
             
             let json = JSON(response.result.value!)
-            print(json)
             if (json["status"].intValue == 1) {
                 for index in 0 ..< json["value"].count {
                     let messageString = json["value"][index]["message"].stringValue
                     let sender = json["value"][index]["userName"].stringValue
-                    let message = Message(message: messageString, roomId: (self.chatRoom?.roomId)!, username: sender)
+                    let message = Message(message: messageString, username: sender)
                     self.messages.append(message!)
                 }
                 self.tableview.reloadData()
@@ -51,10 +50,12 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
         
         SocketIOManager.sharedInstance.getMessage { (messageInfo) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                print("Chat room get message")
                 print(messageInfo)
-//                self.messages.append(messageInfo)
-//                self.tableview.reloadData()
-                //                self.scrollToBottom()
+                let message = Message(message: messageInfo["message"] as! String, username: messageInfo["username"] as! String)
+                self.messages.append(message!)
+                self.tableview.reloadData()
+                self.scrollToBottom()
             })
         }
         
@@ -80,17 +81,6 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
 //        tableview.estimatedRowHeight = 90.0
 //        tableview.rowHeight = UITableViewAutomaticDimension
         tableview.tableFooterView = UIView(frame: CGRectZero)
-    }
-    
-    func dummyMessages() {
-        let message1 = Message(message: "Test1", roomId: "kjdfaicniiaid38d39na9cn", username: "arvidsat")
-        let message2 = Message(message: "Test2 fdjsaflkd falösdfjsadf ladjf ödlfnaskd clasdnfsaldfönasd cljsanfkl sadlfnasdlf lsd fl sadjf sdaöf jsdaj fjas dfök sadjfk asjf jsa fjlsda fljsd fl", roomId: "kjdfaicniiaid38d39na9cn", username: "arvidsat")
-        let message3 = Message(message: "Test3", roomId: "kjdfaicniiaid38d39na9cn", username: "arvidsat")
-        let message4 = Message(message: "Test4", roomId: "kjdfaicniiaid38d39na9cn", username: "Emil")
-        let message5 = Message(message: "Test5", roomId: "kjdfaicniiaid38d39na9cn", username: "arvidsat")
-        let message6 = Message(message: "Test6", roomId: "kjdfaicniiaid38d39na9cn", username: "Rasmus")
-        
-        messages = [message1!, message2!, message3!, message4!, message5!, message6!]
     }
     
     // MARK: UITableView Delegate and Datasource Methods
@@ -167,10 +157,8 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
         if messageToSend == "" {
             print("Inget att skicka")
         } else {
-            let newMessage = Message(message: messageToSend!, roomId: chatRoom!.roomId, username: username!)
-            messages.append(newMessage!)
-            tableview.reloadData()
-            SocketIOManager.sharedInstance.sendMessage((newMessage?.message)!, roomId: newMessage!.roomId)
+            let newMessage = Message(message: messageToSend!, username: username!)
+            SocketIOManager.sharedInstance.sendMessage((newMessage?.message)!, roomId: chatRoom!.roomId)
             messageInput.text = ""
             
             // Skicka meddelande till servern

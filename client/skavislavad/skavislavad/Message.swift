@@ -11,15 +11,13 @@ import Foundation
 class Message {
     
     var message: String = ""
-    var roomId: String = ""
     var username: String = ""
     
-    init?(message: String, roomId: String, username: String) {
+    init?(message: String, username: String) {
         self.message = message
-        self.roomId = roomId
         self.username = username
         
-        if message.isEmpty || roomId.isEmpty || username.isEmpty {
+        if message.isEmpty || username.isEmpty {
             return nil
         }
     }

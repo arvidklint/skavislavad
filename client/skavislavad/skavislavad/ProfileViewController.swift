@@ -71,6 +71,7 @@ class ProfileViewController: UIViewController {
     @IBAction func logout(sender: UIButton) {
         NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "username")
         NSUserDefaults.standardUserDefaults().setObject(false, forKey: "userLoggedIn")
+        SocketIOManager.sharedInstance.disconnectUser(username!)
         self.performSegueWithIdentifier("Logout", sender: self)
     }
     
