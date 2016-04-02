@@ -15,20 +15,19 @@ module.exports.saveMessage = function(m, u, id) {
     });
 };
 
-module.exports.getMessagesFromRoom = function(roomId, io) {
+module.exports.getMessagesFromRoom = function(roomId, res) {
     Message.find({"roomId": roomId}, function(err, messages) {
         if(err) {
-            io.emit("error",r.error(err));
+            res.json(r.error(err));
         }
-  
-        io.emit("messages", r.get(messages));
+        res.json(r.get(messages));
     });
 };
 
-module.exports.createChatRoom = function(clientSocket, members, dateId, io) {
+module.exports.createChatRoom = function(clientSocket, members, dateId) {
 	var room = new ChatRoom();
 	room.members = members;
-	room.date = dateId;
+	room.roomId = dateId;
 
 	room.save(function(err) {
         if (err){

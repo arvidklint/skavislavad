@@ -25,6 +25,7 @@ var balanceHistoryRequest = require('./controllers/balanceHistoryRequest');
 var loginRequest = require('./controllers/loginRequest');
 var registerRequest = require('./controllers/registerRequest');
 var ioRequest = require('./controllers/ioRequest');
+var chatRoomRequest = require('./controllers/chatRoomRequest');
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -238,6 +239,16 @@ router.route('/finishedbets')
         betEventRequest.finishBetEvent(req.body.betId, req.body.result, res);
     });
 
+router.route('/getrooms/:userName')
+    .get(function(req, res) {
+        chatRoomRequest.getChatRooms(req.params.userName, res);
+    });
+
+router.route('/getmessages/:roomId')
+    .get(function(req, res) {
+        ioRequest.getMessagesFromRoom(req.params.roomId, res);
+    });
+
 // all of our routes will be prefixed with /api
 app.use('/api', router);
 
@@ -257,7 +268,7 @@ io.on('connection', function(clientSocket) {
     clientSocket.on('connectUser', function(username){
         console.log(username + " connected to skavislavad");
         users[username] = clientSocket.id;
-        sockets[clientSocket.id] = { 
+        sockets[clientSocket.id] = {
             "username" : username,
             "socket" : clientSocket
         };
@@ -270,7 +281,7 @@ io.on('connection', function(clientSocket) {
     clientSocket.on('chatMessage', function(message, roomId){
         var currentDateTime = new Date().toLocaleString();
         var sender = sockets[clientSocket.id].username;
-
+        console.log("hehe");
         var msg =  {
             "date" : currentDateTime,
             "message" : message,
@@ -279,13 +290,13 @@ io.on('connection', function(clientSocket) {
 
         ioRequest.saveMessage(message, sender, roomId);
 
-        ChatRoom.find({"date": roomId}, function(err, room) {
+        ChatRoom.find({"roomId": roomId}, function(err, room) {
             if (err){
                 console.log("error: " + err);
                 // res.json(r.error(err));
             }
             for(var member in room.members){
-                sockets[users[room.members[member]]].emit('receiveMessage', msg);
+                sockets[users[room.members[member]]].socket.emit('receiveMessage', msg);
             }
         });
 
@@ -296,18 +307,39 @@ io.on('connection', function(clientSocket) {
         console.log(message);
     });
 
-    clientSocket.on('newChatRoom', function(members) {
+    clientSocket.on('joinChatRoomWithMembers', function(members) {
         console.log("Creating new room");
-        var currentDateTime = new Date().toLocaleString();
 
-        var receiver = sockets[clientSocket.id].socket;
-        console.log("creator: " + receiver);
-        console.log("dateId: " + currentDateTime);
-        ioRequest.createChatRoom(receiver, members, currentDateTime, io);
+        ChatRoom.find(function(err, rooms) {
+            var exists = false;
+            var room = {};
+            for (var roomIndex in rooms) {
+                var isTheSame = true;
+                for (var memberIndex in rooms[roomIndex].members) {
+                    var member = rooms[roomIndex].members[memberIndex];
+                    if (members.indexOf(member) <= -1) {
+                        isTheSame = false;
+                    }
+                }
+                if (isTheSame) {
+                    console.log("Rummet finns");
+                    exists = true;
+                    room = rooms[roomIndex];
+                    break;
+                }
+            }
+            var receiver = sockets[clientSocket.id].socket;
+            if (exists) {
+                receiver.emit("room", room);
+            } else {
+                var currentDateTime = String(new Date().getTime());
+                ioRequest.createChatRoom(receiver, members, currentDateTime);
+            }
+        });
     });
 
-    clientSocket.on('getMessages', function(roomId) {
-        ioRequest.getMessagesFromRoom(roomId, io);
+    clientSocket.on('joinChatRoomWithId', function(roomId) {
+        console.log("Joining room with id: " + roomId);
     });
 });
 

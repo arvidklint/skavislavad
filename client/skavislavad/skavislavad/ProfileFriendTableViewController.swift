@@ -14,6 +14,7 @@ class ProfileFriendTableViewController: UITableViewController {
 
     let username = NSUserDefaults.standardUserDefaults().stringForKey("username")
     var friendsArray = [String]()
+    var toRoom: ChatRoom?
     
     @IBAction func addFriend(sender: AnyObject) {
         
@@ -108,6 +109,22 @@ class ProfileFriendTableViewController: UITableViewController {
         }    
     }
     
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        print("YO")
+        let friend = friendsArray[indexPath.row];
+        SocketIOManager.sharedInstance.joinChatRoomWithMembers([username!, friend])
+        SocketIOManager.sharedInstance.getRoom { (room) -> Void in
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                
+                print(room)
+                self.toRoom = ChatRoom(members: room["members"] as! [String], roomId: room["roomId"] as! String)
+                self.performSegueWithIdentifier("ShowChatRoomFromFriends", sender: self)
+            })
+        }
+    }
+
+    
+    
 
     /*
     // Override to support rearranging the table view.
@@ -124,14 +141,15 @@ class ProfileFriendTableViewController: UITableViewController {
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowChatRoomFromFriends" {
+            let chatRoomController = segue.destinationViewController as! ChatRoomViewController
+            chatRoomController.chatRoom = toRoom
+        }
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
-
 }

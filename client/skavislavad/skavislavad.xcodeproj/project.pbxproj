@@ -210,7 +210,6 @@
 				FE330FFD1C9EB5F800F8188A /* AppDelegate.swift */,
 				FE330FFF1C9EB5F800F8188A /* BearViewController.swift */,
 				FE3310011C9EB5F800F8188A /* Main.storyboard */,
-				FE4178D11CAFD90C00C28102 /* Message.swift */,
 				FED605FA1CAEB2C20050C4EB /* ProfileMessagesTableViewCell.swift */,
 				20D6F40A1CA4974F0081D247 /* ProfileCreatedBetEventsTableViewCell.swift */,
 				203828B11CA9D64900778AFF /* ProfileAllBetEventsTableViewCell.swift */,
@@ -249,6 +248,7 @@
 		FECE7B3D1CA6A62D00E1EE9C /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FE4178D11CAFD90C00C28102 /* Message.swift */,
 				FE4178CF1CAFCB7700C28102 /* ChatRoom.swift */,
 				FE12FA3D1CAEB52500DC2AFF /* SocketIOManager.swift */,
 				20D6F3FC1CA2D5210081D247 /* ProfileUser.swift */,

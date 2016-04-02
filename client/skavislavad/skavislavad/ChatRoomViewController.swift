@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate {
     
@@ -27,7 +29,36 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         configureTableView()
-        dummyMessages()
+        
+        print("http://localhost:3000/api/getmessages/\(chatRoom!.roomId)")
+        
+        Alamofire.request(.GET, "http://localhost:3000/api/getmessages/\(chatRoom!.roomId)").responseJSON { response in
+            
+            let json = JSON(response.result.value!)
+            print(json)
+            if (json["status"].intValue == 1) {
+                for index in 0 ..< json["value"].count {
+                    let messageString = json["value"][index]["message"].stringValue
+                    let sender = json["value"][index]["userName"].stringValue
+                    let message = Message(message: messageString, roomId: (self.chatRoom?.roomId)!, username: sender)
+                    self.messages.append(message!)
+                }
+                self.tableview.reloadData()
+            } else {
+                print(json["message"])
+            }
+        }
+        
+        SocketIOManager.sharedInstance.getMessage { (messageInfo) -> Void in
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                print(messageInfo)
+//                self.messages.append(messageInfo)
+//                self.tableview.reloadData()
+                //                self.scrollToBottom()
+            })
+        }
+        
+//        dummyMessages()
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -139,10 +170,11 @@ class ChatRoomViewController: UIViewController, UITableViewDelegate, UITableView
             let newMessage = Message(message: messageToSend!, roomId: chatRoom!.roomId, username: username!)
             messages.append(newMessage!)
             tableview.reloadData()
+            SocketIOManager.sharedInstance.sendMessage((newMessage?.message)!, roomId: newMessage!.roomId)
+            messageInput.text = ""
+            
             // Skicka meddelande till servern
         }
         scrollToBottom()
     }
-    
-
 }

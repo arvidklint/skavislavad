@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 class ProfileMessagesTableViewController: UITableViewController {
     
@@ -29,14 +31,22 @@ class ProfileMessagesTableViewController: UITableViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        dummyChatRooms()
-    }
-    
-    func dummyChatRooms() {
-        let chatRoom1 = ChatRoom(members: ["Emil, arvidsat"], roomId: "kjdfaicniiaid38d39na9cn")
-        let chatRoom2 = ChatRoom(members: ["arvidsat, mike, rasmus"], roomId: "kjdfaicniiaid38d39na990")
+        chatRooms = [ChatRoom]()
         
-        chatRooms = [chatRoom1!, chatRoom2!]
+        Alamofire.request(.GET, "http://localhost:3000/api/getrooms/\(username!)").responseJSON { response in
+            
+            let json = JSON(response.result.value!)
+            print(json)
+            if (json["status"].intValue == 1) {
+                for index in 0 ..< json["value"].count {
+                    let chatRoom = ChatRoom(members: json["value"][index]["members"].arrayObject as! [String], roomId: json["value"][index]["roomId"].stringValue)
+                    self.chatRooms.append(chatRoom!)
+                }
+                self.tableview.reloadData()
+            } else {
+                print(json["message"])
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -73,6 +83,10 @@ class ProfileMessagesTableViewController: UITableViewController {
 
         return cell
     }
+    
+//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        performSegueWithIdentifier("ShowChatRoom", sender: self)
+//    }
 
     /*
     // Override to support conditional editing of the table view.

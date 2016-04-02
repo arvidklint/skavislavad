@@ -38,18 +38,50 @@ class SocketIOManager: NSObject {
 //        }
 //    }
     
-    func sendMessage(message: String, withUsername username: String) {
-        socket.emit("chatMessage", username, message)
+    func sendMessage(message: String, roomId id: String) {
+        socket.emit("chatMessage", message, id)
+        print("kom vi hit?")
     }
     
     func getMessage(completionHandler: (messageInfo: [String: AnyObject]) -> Void) {
-        socket.on("newMessage") { (dataArray, socketAck) -> Void in
+        socket.on("receiveMessage") { (dataArray, socketAck) -> Void in
             var messageDictionary = [String: AnyObject]()
+            print(dataArray)
             messageDictionary["username"] = dataArray[0] as! String
             messageDictionary["message"] = dataArray[1] as! String
             messageDictionary["date"] = dataArray[2] as! String
             
             completionHandler(messageInfo: messageDictionary)
         }
+    }
+    
+//    func getMessage(completionHandler: (messageInfo: [String: AnyObject]) -> Void) {
+//        socket.on("newMessage") { (dataArray, socketAck) -> Void in
+//            var messageDictionary = [String: AnyObject]()
+//            messageDictionary["username"] = dataArray[0] as! String
+//            messageDictionary["message"] = dataArray[1] as! String
+//            messageDictionary["date"] = dataArray[2] as! String
+//            
+//            completionHandler(messageInfo: messageDictionary)
+//        }
+//    }
+    
+    func getRoom(completionHandler: (messageInfo: [String: AnyObject]) -> Void) {
+        socket.once("room") { (dataArray, socketAck) -> Void in
+            print(dataArray)
+            var room = [String: AnyObject]()
+            room["roomId"] = dataArray[0]["roomId"] as! String
+            room["members"] = dataArray[0]["members"] as! [String]
+            
+            completionHandler(messageInfo: room)
+        }
+    }
+    
+    func joinChatRoomWithId(roomId: String) {
+        socket.emit("joinRoomWithId", roomId)
+    }
+    
+    func joinChatRoomWithMembers(members: [String]) {
+        socket.emit("joinChatRoomWithMembers", members)
     }
 }

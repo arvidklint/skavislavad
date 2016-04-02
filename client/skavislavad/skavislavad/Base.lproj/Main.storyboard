@@ -989,6 +989,9 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="QUQ-MB-ThA" kind="show" identifier="ShowChatRoomFromFriends" id="3FN-wR-HXj"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bHe-TE-ykw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1194,7 +1197,7 @@
                                     <outlet property="messageLabel" destination="4FO-52-3ZG" id="Pqw-WX-QDL"/>
                                     <outlet property="timeLabel" destination="D7t-eO-JKu" id="Xi3-sy-Stq"/>
                                     <outlet property="usernameLabel" destination="edS-TB-wTq" id="Xpa-q4-0A5"/>
-                                    <segue destination="QUQ-MB-ThA" kind="show" identifier="ShowChatRoom" id="FNg-lj-JWC"/>
+                                    <segue destination="QUQ-MB-ThA" kind="show" identifier="ShowChatRoom" id="s91-Vx-QsH"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -1221,7 +1224,6 @@
         <!--Chat Room View Controller-->
         <scene sceneID="JiO-xp-BE5">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="k0o-Qx-hyK" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="QUQ-MB-ThA" customClass="ChatRoomViewController" customModule="skavislavad" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fiL-3Y-gty"/>
@@ -1239,6 +1241,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Hwt-RC-Tiz" id="yh6-JW-znn">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="109.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="text" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="28s-Pw-nHM">
@@ -1247,6 +1250,7 @@
                                                     <accessibility key="accessibilityConfiguration">
                                                         <accessibilityTraits key="traits" notEnabled="YES"/>
                                                     </accessibility>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
@@ -1259,7 +1263,7 @@
                                                         <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
                                                     </accessibility>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                                         <rect key="frame" x="8" y="8" width="384" height="21"/>
@@ -1331,6 +1335,7 @@
                         <outlet property="tableview" destination="gWR-c0-De1" id="5Mm-p1-X3b"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k0o-Qx-hyK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6762" y="3195"/>
         </scene>
@@ -1888,8 +1893,9 @@
         <image name="defaultPhoto" width="312" height="234"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="naT-hZ-Vso"/>
         <segue reference="9SF-mh-Vie"/>
+        <segue reference="naT-hZ-Vso"/>
+        <segue reference="s91-Vx-QsH"/>
         <segue reference="xRr-a7-woX"/>
         <segue reference="lkf-n6-VvR"/>
     </inferredMetricsTieBreakers>
