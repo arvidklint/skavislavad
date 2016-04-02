@@ -17,6 +17,24 @@ module.exports.saveMessage = function(m, u, id) {
 
 module.exports.getMessagesFromRoom = function(roomId, io) {
     Message.find({"roomId": roomId}, function(err, messages) {
-        
+        if(err) {
+            io.emit("error",r.error(err));
+        }
+  
+        io.emit("messages", r.get(messages));
+    });
+};
+
+module.exports.createChatRoom = function(clientSocket, members, dateId, io) {
+	var room = new ChatRoom();
+	room.members = members;
+	room.date = dateId;
+
+	room.save(function(err) {
+        if (err){
+            console.log("err:" + err);
+        }
+        console.log(room);
+        clientSocket.emit("room", room);
     });
 };

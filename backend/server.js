@@ -16,6 +16,7 @@ var User = require('./models/user');
 var BetEvent = require('./models/betevent');
 var PlacedBets = require('./models/placedbets');
 var BalanceHistory = require('./models/balancehistory');
+var ChatRoom = require('./models/chatroom');
 
 var userRequest = require('./controllers/userRequest');
 var betEventRequest = require('./controllers/betEventRequest');
@@ -23,6 +24,7 @@ var placedBetsRequest = require('./controllers/placedBetsRequest');
 var balanceHistoryRequest = require('./controllers/balanceHistoryRequest');
 var loginRequest = require('./controllers/loginRequest');
 var registerRequest = require('./controllers/registerRequest');
+var ioRequest = require('./controllers/ioRequest');
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -236,13 +238,6 @@ router.route('/finishedbets')
         betEventRequest.finishBetEvent(req.body.betId, req.body.result, res);
     });
 
-router.route('/getmessages/:roomid')
-    .get(function(req, res) {
-        ioRequest.getMessagesFromRoom(req.params.roomid, res);
-    });
-
-
-
 // all of our routes will be prefixed with /api
 app.use('/api', router);
 
@@ -253,30 +248,62 @@ http.listen(port);
 // IO STUFF
 // =============================================================================
 var typingUsers = {};
-var chatRooms = [];
+var sockets = {};
+var users = {};
 
 io.on('connection', function(clientSocket) {
     console.log('a user connected');
+
+    clientSocket.on('connectUser', function(username){
+        console.log(username + " connected to skavislavad");
+        users[username] = clientSocket.id;
+        sockets[clientSocket.id] = { 
+            "username" : username,
+            "socket" : clientSocket
+        };
+    });
 
     clientSocket.on('disconnect', function() {
         console.log('user disconnected');
     });
 
-    clientSocket.on('chatMessage', function(clientUsername, message, roomId) {
+    clientSocket.on('chatMessage', function(message, roomId){
         var currentDateTime = new Date().toLocaleString();
+        var sender = sockets[clientSocket.id].username;
 
-        ioRequest.saveMessage(message, clientUsername, roomId);
-        // io.emit('userTypingUpdate', typingUsers);
-        io.emit('newMessage', clientUsername, message, currentDateTime);
+        var msg =  {
+            "date" : currentDateTime,
+            "message" : message,
+            "from" : sender
+        };
+
+        ioRequest.saveMessage(message, sender, roomId);
+
+        ChatRoom.find({"date": roomId}, function(err, room) {
+            if (err){
+                console.log("error: " + err);
+                // res.json(r.error(err));
+            }
+            for(var member in room.members){
+                sockets[users[room.members[member]]].emit('receiveMessage', msg);
+            }
+        });
+
     });
 
-    clientSocket.on('connectToRoom', function(clientUsername, otherUsername) {
+    clientSocket.on('connectToRoom', function(clientUsername, otherUsername, roomId) {
         var message = "User " + clientUsername + " was connected.";
         console.log(message);
     });
 
     clientSocket.on('newChatRoom', function(members) {
-        
+        console.log("Creating new room");
+        var currentDateTime = new Date().toLocaleString();
+
+        var receiver = sockets[clientSocket.id].socket;
+        console.log("creator: " + receiver);
+        console.log("dateId: " + currentDateTime);
+        ioRequest.createChatRoom(receiver, members, currentDateTime, io);
     });
 
     clientSocket.on('getMessages', function(roomId) {
