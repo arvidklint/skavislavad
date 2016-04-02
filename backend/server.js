@@ -1,7 +1,9 @@
 var express = require('express');
 var app = express();
+var http = require('http').Server(app);
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var io = require('socket.io')(http);
 
 // <<<<<<< UNCOMMENT WHEN WORKING LOCAL! >>>>>>>
 // mongoose.connect('mongodb://localhost:27017/test');
@@ -241,5 +243,30 @@ app.use('/api', router);
 
 // START THE SERVER
 // =============================================================================
-app.listen(port);
+http.listen(port);
+
+// IO stuff
+// =============================================================================
+var typingUsers = {};
+var chatRooms = [];
+
+io.on('connection', function(clientSocket) {
+    console.log('a user connected');
+
+    clientSocket.on('diconnect', function() {
+        console.log('user disconnected');
+    });
+
+    clientSocket.on('chatMessage', function(clientUsername, message) {
+        var currentDateTime = new Date().toLocaleString();
+        // io.emit('userTypingUpdate', typingUsers);
+        io.emit('newMessage', clientUsername, message, currentDateTime);
+    });
+
+    clientSocket.on('connectUser', function(clientUsername) {
+        var message = "User " + clientUsername + " was connected.";
+        console.log(message);
+    });
+})
+
 console.log('Magic happens on port ' + port);

@@ -49,6 +49,7 @@ class LoginViewController: UIViewController {
         if username!.isEmpty {
             alertMessage("Ange användarnamn")
         } else {
+            SocketIOManager.sharedInstance.connectToServerWithUsername(username!)
             Alamofire.request(.GET, "http://localhost:3000/api/login/\(username!)").responseJSON { response in
                 let json = JSON(response.result.value!)
                 print(json)
