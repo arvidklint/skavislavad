@@ -236,6 +236,11 @@ router.route('/finishedbets')
         betEventRequest.finishBetEvent(req.body.betId, req.body.result, res);
     });
 
+router.route('/getmessages/:roomid')
+    .get(function(req, res) {
+        ioRequest.getMessagesFromRoom(req.params.roomid, res);
+    });
+
 
 
 // all of our routes will be prefixed with /api
@@ -245,7 +250,7 @@ app.use('/api', router);
 // =============================================================================
 http.listen(port);
 
-// IO stuff
+// IO STUFF
 // =============================================================================
 var typingUsers = {};
 var chatRooms = [];
@@ -253,20 +258,30 @@ var chatRooms = [];
 io.on('connection', function(clientSocket) {
     console.log('a user connected');
 
-    clientSocket.on('diconnect', function() {
+    clientSocket.on('disconnect', function() {
         console.log('user disconnected');
     });
 
-    clientSocket.on('chatMessage', function(clientUsername, message) {
+    clientSocket.on('chatMessage', function(clientUsername, message, roomId) {
         var currentDateTime = new Date().toLocaleString();
+
+        ioRequest.saveMessage(message, clientUsername, roomId);
         // io.emit('userTypingUpdate', typingUsers);
         io.emit('newMessage', clientUsername, message, currentDateTime);
     });
 
-    clientSocket.on('connectUser', function(clientUsername) {
+    clientSocket.on('connectToRoom', function(clientUsername, otherUsername) {
         var message = "User " + clientUsername + " was connected.";
         console.log(message);
     });
-})
+
+    clientSocket.on('newChatRoom', function(members) {
+        
+    });
+
+    clientSocket.on('getMessages', function(roomId) {
+        ioRequest.getMessagesFromRoom(roomId, io);
+    });
+});
 
 console.log('Magic happens on port ' + port);
