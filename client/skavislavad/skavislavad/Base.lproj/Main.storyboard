@@ -105,6 +105,9 @@
                                     <constraint firstAttribute="trailing" secondItem="LIe-fQ-l3o" secondAttribute="trailing" id="Xaq-eo-ULU"/>
                                     <constraint firstItem="LIe-fQ-l3o" firstAttribute="leading" secondItem="PwC-ix-dvA" secondAttribute="leading" id="yfa-z8-Zav"/>
                                 </constraints>
+                                <variation key="widthClass=compact" misplaced="YES">
+                                    <rect key="frame" x="20" y="84" width="360" height="418"/>
+                                </variation>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -219,9 +222,6 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                            <variation key="widthClass=compact" ambiguous="YES" misplaced="YES">
-                                                <rect key="frame" x="0.0" y="32" width="364" height="70"/>
-                                            </variation>
                                             <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                                 <rect key="frame" x="8" y="30" width="298" height="91.5"/>
                                             </variation>
@@ -1156,46 +1156,22 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                             <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                <rect key="frame" x="8" y="8" width="198" height="21"/>
-                                            </variation>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="message" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4FO-52-3ZG">
-                                            <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                <rect key="frame" x="8" y="40" width="384" height="21"/>
-                                            </variation>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D7t-eO-JKu">
-                                            <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                <rect key="frame" x="299" y="7" width="93" height="21"/>
+                                                <rect key="frame" x="8" y="24" width="384" height="21"/>
                                             </variation>
                                         </label>
                                     </subviews>
                                     <variation key="default">
                                         <mask key="subviews">
                                             <exclude reference="edS-TB-wTq"/>
-                                            <exclude reference="4FO-52-3ZG"/>
-                                            <exclude reference="D7t-eO-JKu"/>
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact">
                                         <mask key="subviews">
                                             <include reference="edS-TB-wTq"/>
-                                            <include reference="4FO-52-3ZG"/>
-                                            <include reference="D7t-eO-JKu"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="messageLabel" destination="4FO-52-3ZG" id="Pqw-WX-QDL"/>
-                                    <outlet property="timeLabel" destination="D7t-eO-JKu" id="Xi3-sy-Stq"/>
                                     <outlet property="usernameLabel" destination="edS-TB-wTq" id="Xpa-q4-0A5"/>
                                     <segue destination="QUQ-MB-ThA" kind="show" identifier="ShowChatRoom" id="s91-Vx-QsH"/>
                                 </connections>
@@ -1473,25 +1449,6 @@
             </objects>
             <point key="canvasLocation" x="3606" y="76.5"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="dbH-tg-sVL">
-            <objects>
-                <viewController id="yXz-Hx-BMC" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="d48-w3-ict"/>
-                        <viewControllerLayoutGuide type="bottom" id="wiy-om-rzy"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="53g-7n-QxF">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" systemItem="bookmarks" id="NMX-4Q-xT0"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="UxW-QO-lDO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1841" y="3551"/>
-        </scene>
         <!--Logga in-->
         <scene sceneID="WfE-cT-w9r">
             <objects>
@@ -1544,7 +1501,6 @@
                                     <rect key="frame" x="147" y="469" width="106" height="51"/>
                                 </variation>
                                 <connections>
-                                    <action selector="login:" destination="ClY-4R-yef" eventType="touchUpInside" id="ZSd-jo-8eh"/>
                                     <action selector="register:" destination="ClY-4R-yef" eventType="touchUpInside" id="Lel-Jz-P7M"/>
                                 </connections>
                             </button>
@@ -1593,7 +1549,6 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="yXz-Hx-BMC" kind="relationship" relationship="viewControllers" id="gDB-AG-6Rc"/>
                         <segue destination="2ep-xV-1qS" kind="relationship" relationship="viewControllers" id="Dny-s0-bIN"/>
                         <segue destination="WEV-hp-ICm" kind="relationship" relationship="viewControllers" id="qfb-AR-4bp"/>
                     </connections>

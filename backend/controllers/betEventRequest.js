@@ -2,6 +2,7 @@ var BetEvent = require('../models/betevent');
 var r = require('../response.js');
 var PlacedBets = require('../models/placedbets');
 var User = require('../models/user');
+var BalanceHistory = require('../models/balancehistory');
 
 module.exports.post = function(req, res) {
     var betevent = new BetEvent();      // create a new instance of the betevent model
@@ -138,6 +139,17 @@ module.exports.finishBetEvent = function(betId, result, res) {
                                 if (b.type == r) {
                                     console.log(w);
                                     user.balance += w;
+
+                                    var balanceHistory = new BalanceHistory();
+                                    balanceHistory.userName = user.userName;
+                                    balanceHistory.newBalance = user.balance;
+                                    balanceHistory.changedAmount = w;
+
+                                    balanceHistory.save(function(err) {
+                                        if (err) {
+                                            console.log(err);
+                                        }
+                                    });
 
                                     user.save(function(err) {
                                         if (err) {

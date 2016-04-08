@@ -52,6 +52,7 @@ class LoginViewController: UIViewController {
             SocketIOManager.sharedInstance.connectToServerWithUsername(username!)
             Alamofire.request(.GET, "http://localhost:3000/api/login/\(username!)").responseJSON { response in
                 let json = JSON(response.result.value!)
+                print("login")
                 print(json)
                 
                 if json["status"].intValue == 1 {
@@ -82,6 +83,7 @@ class LoginViewController: UIViewController {
             
             Alamofire.request(.POST, "http://localhost:3000/api/register", parameters: parameters).responseJSON { response in
                 let json = JSON(response.result.value!)
+                print("register")
                 print(json)
                 
                 if json["status"].intValue == 1 {

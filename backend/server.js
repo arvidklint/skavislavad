@@ -299,8 +299,14 @@ io.on('connection', function(clientSocket) {
             }
             console.log(room);
             for (var member in room[0].members){
-                console.log("sending to " + room[0].members[member]);
-                sockets[users[room[0].members[member]]].socket.emit('receiveMessage', msg);
+                var user = users[room[0].members[member]];
+                if (user != undefined) {
+                    var socket = sockets[user].socket;
+                    if (socket != undefined) {
+                        console.log("sending to " + room[0].members[member]);
+                        socket.emit('receiveMessage', msg);
+                    }
+                }
             }
         });
 
